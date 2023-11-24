@@ -100,7 +100,6 @@ add_filter('wpsl_listing_template', function () {
                 <div>
                     <h3 class='store-single-title text-primary fw-semibold fs-5'> <%= store %> </h3>
                     <p class='text-primary fw-medium mb-0'>Product Line</p>
-                  
                     <% if ( terms ) { %>
                         <p class='fw-light mb-0'><%= terms %></p>
                     <% } %>
