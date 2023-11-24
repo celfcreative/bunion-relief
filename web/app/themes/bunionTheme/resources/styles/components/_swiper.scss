@@ -1,0 +1,137 @@
+.swiper {
+  height: 25rem;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets,
+.swiper-vertical > .swiper-pagination-bullets {
+  @extend .d-flex, .justify-content-center, .flex-column;
+
+  width: 1%;
+  top: 50%;
+  left: 5%;
+  padding: 0;
+  transform: translateY(-50%);
+  gap: 4rem;
+}
+
+.swiper-pagination {
+  z-index: -1;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  background-color: $white;
+  border: 1px solid $secondary;
+
+  &-active {
+    background-color: $primary !important;
+    border-color: $primary;
+    outline: 1px solid $primary;
+    outline-offset: 1px;
+  }
+}
+
+.step {
+  padding-left: $spacer * 8;
+}
+
+.stepper-info {
+  position: relative;
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 5.6%;
+    width: 1px;
+    height: 60%;
+    background-color: $secondary;
+    transform: translateY(33%);
+    z-index: -2;
+
+    @include media-breakpoint-down(xxl) {
+      top: 8%;
+      height: 50%;
+      left: 5.9%;
+    }
+
+    @include media-breakpoint-down(lg) {
+      top: 0%;
+      height: 60%;
+      left: 2.8%;
+    }
+
+    @include media-breakpoint-down(md) {
+      top: 9%;
+      height: 50%;
+      left: 3%;
+    }
+    @include media-breakpoint-down(sm) {
+      top: 16%;
+      height: 41%;
+      left: 5.2%;
+    }
+
+    @media (max-width: 399.98px) {
+      top: 21%;
+      height: 35%;
+      left: 5.3%;
+    }
+    @media (max-width: 353.98px) {
+      top: 24%;
+      height: 31%;
+      left: 5.5%;
+    }
+  }
+}
+
+.wp-block-stepper {
+  .stepper-container {
+    @include media-breakpoint-down(lg) {
+      .stepper-slider {
+        width: 70%;
+
+        @include media-breakpoint-down(lg) {
+          width: 100%;
+        }
+      }
+
+      .stepper-body {
+        width: 100%;
+      }
+    }
+  }
+
+  .step {
+    @include media-breakpoint-down(lg) {
+      padding-left: $spacer * 4;
+    }
+  }
+}
+
+#swiper-rotate {
+  @include media-breakpoint-down(lg) {
+    left: 2%;
+
+    @include media-breakpoint-down(sm) {
+      left: 4%;
+    }
+  }
+}

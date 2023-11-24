@@ -1,0 +1,73 @@
+.bunionCondition {
+  .wp-block-columns {
+    margin-bottom: $spacer * 2;
+
+    .wp-block-column {
+      .wp-block-group {
+        position: relative;
+        height: 100%;
+
+        ::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          bottom: 0;
+          left: 0;
+        }
+      }
+      &:nth-child(1) ::before {
+        background-color: $primary;
+      }
+
+      &:nth-child(2) ::before {
+        background-color: $green;
+      }
+
+      &:nth-child(3) ::before {
+        background-color: $orange;
+      }
+    }
+  }
+}
+
+.bg-image-align-right {
+  @extend .d-flex, .align-items-center;
+  min-height: 550px;
+  position: relative;
+
+  @include media-breakpoint-down(lg) {
+    min-height: auto;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, -50%);
+    background-image: linear-gradient(90deg, white 0 0%, transparent 40% 100%),
+      url('~@images/smartlapidus-list-image.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+
+    @include media-breakpoint-down(lg) {
+      width: 100%;
+      left: 0;
+      background-image: url('~@images/smartlapidus-list-image.png');
+      opacity: 0;
+    }
+  }
+
+  .wp-block-group {
+    @extend .w-100;
+
+    @include media-breakpoint-down(lg) {
+      width: auto !important;
+    }
+  }
+}

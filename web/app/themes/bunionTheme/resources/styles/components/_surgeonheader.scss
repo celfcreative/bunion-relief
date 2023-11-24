@@ -1,0 +1,30 @@
+.store-single-content {
+  &-img-box {
+    padding: $spacer * 0.7;
+    border-radius: $border-radius;
+    background-color: $white;
+    box-shadow: $box-shadow;
+
+    img {
+      border-radius: $border-radius;
+
+      @include media-breakpoint-down(lg) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.surgeon-map {
+  margin-bottom: $spacer * 4;
+}
+
+.store-single-buttons {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
+}

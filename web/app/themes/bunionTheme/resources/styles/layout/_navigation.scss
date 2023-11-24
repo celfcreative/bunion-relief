@@ -1,0 +1,99 @@
+.brand {
+  .mobile-offcanvas {
+    width: 10rem;
+  }
+}
+
+.navbar__menu-icon i {
+  color: $primary;
+  font-size: 2.4rem;
+}
+
+.offcanvas {
+  .btn-close {
+    font-size: $h5-font-size;
+  }
+
+  .accordion {
+    &-button {
+      font-size: $h4-font-size;
+      color: $primary;
+
+      &::after {
+        color: $primary;
+        font-size: 3rem;
+        transform: translateY(-1rem);
+      }
+    }
+
+    &__single {
+      font-size: $h4-font-size;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    &-collapse {
+      font-size: $h6-font-size;
+    }
+
+    &-body {
+      color: $gray-700;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  &__contact-details {
+    font-size: $h6-font-size;
+  }
+
+  &__social-icons {
+    font-size: $h5-font-size;
+  }
+}
+
+.my-menu {
+  .my-child-menu {
+    font-size: $h8-font-size;
+
+    &-link:hover {
+      border-bottom: 0.5px solid $white;
+      background-color: $primary;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .my-child-item {
+      font-size: $font-size-md;
+      position: relative;
+
+      a {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  .my-menu-item {
+    font-size: $font-size-md;
+
+    &:nth-child(6) {
+      order: 7;
+    }
+
+    &:nth-child(7) {
+      order: 6;
+    }
+  }
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}

@@ -1,0 +1,27 @@
+.modal-content {
+  border-radius: $border-radius;
+
+  .modal-img-box {
+    svg {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+  }
+
+  .modal-body {
+    .af-form {
+      .af-fields {
+        .af-field {
+          .af-input {
+            ul {
+              li {
+                border: none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

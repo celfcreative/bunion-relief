@@ -1,0 +1,17 @@
+.wp-block-video {
+  video {
+    @extend .rounded;
+  }
+}
+
+.wp-block-embed__wrapper {
+  iframe {
+    border-radius: $border-radius;
+  }
+}
+
+.video-align-bottom {
+  video {
+    transform: translateY(6.1px);
+  }
+}

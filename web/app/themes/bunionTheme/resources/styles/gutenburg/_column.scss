@@ -1,0 +1,11 @@
+.last-content-align-bottom {
+  .wp-block-column {
+    @extend .d-flex, .flex-column, .justify-content-between, .align-items-start;
+  }
+}
+
+.column-images {
+  @include media-breakpoint-down(md) {
+    width: 75%;
+  }
+}

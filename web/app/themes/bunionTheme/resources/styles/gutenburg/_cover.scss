@@ -1,0 +1,43 @@
+.opacity-reduce {
+  @include media-breakpoint-down(md) {
+    .wp-block-cover__background {
+      background: none !important;
+    }
+    img {
+      opacity: 0.5;
+    }
+  }
+}
+
+.wp-block-cover {
+  .wp-block-cover__inner-container {
+    @extend .container;
+
+    @include media-breakpoint-down(sm) {
+      padding: 0;
+    }
+  }
+}
+
+.wp-block-cover .wp-block-embed {
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.video-bg {
+  @include media-breakpoint-down(sm) {
+    background-image: url('~@images/smartlapidus-hero.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+
+    .wp-block-cover__background {
+      opacity: 0.5 !important;
+    }
+
+    .wp-block-cover__video-background {
+      display: none;
+    }
+  }
+}

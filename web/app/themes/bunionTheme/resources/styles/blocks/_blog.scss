@@ -1,0 +1,30 @@
+.blog-box {
+  @extend .d-flex, .flex-column, .align-items-center, .gap-5;
+
+  .blogs {
+    row-gap: $spacer * 2;
+    padding-inline: $spacer * 0.75;
+
+    .blog {
+      img {
+        border-radius: $border-radius;
+      }
+
+      h4 {
+        font-weight: $font-weight-semibold;
+      }
+
+      a {
+        text-decoration: none;
+        font-weight: $font-weight-semibold;
+        font-size: $h6-font-size;
+        text-decoration: underline;
+      }
+
+      .card-text {
+        font-weight: $font-weight-light;
+        font-size: $h6-font-size;
+      }
+    }
+  }
+}

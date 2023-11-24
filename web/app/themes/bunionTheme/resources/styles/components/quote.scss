@@ -1,0 +1,105 @@
+.carousel {
+  &-indicators {
+    @extend .mb-0;
+    transform: translateY(150%);
+
+    .carouselBtn {
+      @extend .bg-primary;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+
+      &::after {
+        @extend .d-none;
+      }
+    }
+  }
+}
+.is-style-default {
+  .carousel-inner {
+    .carousel-item {
+      .quote {
+        &-img-box {
+          @media (max-width: 767.98px) {
+            width: 50%;
+          }
+          img {
+            border-radius: $border-radius;
+          }
+        }
+        &-content {
+          p {
+            font-size: $h4-font-size;
+            font-weight: $font-weight-light;
+          }
+
+          .heading {
+            font-size: $h4-font-size;
+            @extend .text-primary, .fst-italic;
+          }
+
+          span {
+            font-weight: $font-weight-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+.is-style-no-image {
+  .carousel-inner {
+    .carousel-item {
+      .quote {
+        &-img-box {
+          @extend .d-none;
+        }
+
+        &-content {
+          @extend .col, .text-center;
+          position: relative;
+
+          @media (max-width: 575.98px) {
+            width: 100%;
+          }
+
+          .heading {
+            // @extend .mt-5;
+            font-size: $h4-font-size;
+          }
+
+          p {
+            &::after {
+              content: '';
+              background-image: url('~@images/quotationEnd.png');
+              background-repeat: no-repeat;
+              background-size: contain;
+              position: absolute;
+              width: 55px;
+              height: 50px;
+              transform: translate(10%, 14%);
+
+              @include media-breakpoint-down(md) {
+                display: none;
+              }
+            }
+
+            &::before {
+              content: '';
+              background-image: url('~@images/quotationStart.png');
+              background-repeat: no-repeat;
+              position: absolute;
+              width: 55px;
+              height: 50px;
+              transform: translate(-110%, -30%);
+
+              @include media-breakpoint-down(md) {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

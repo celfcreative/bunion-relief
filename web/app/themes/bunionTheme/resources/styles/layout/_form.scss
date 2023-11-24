@@ -1,0 +1,367 @@
+.contact_form {
+  .af-form {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translateY(-12%);
+    background-color: $white;
+    z-index: 1;
+  }
+}
+
+.af-form {
+  @extend .rounded-4, .p-3, .shadow;
+
+  .af-fields {
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .af-page-wrap {
+      @extend .progress, .position-relative;
+      transform: translate(100%, -200%);
+      width: 50%;
+      background-color: $tertiary;
+      margin: 0;
+
+      .enabled {
+        color: $primary;
+      }
+
+      .current {
+        color: $white;
+      }
+
+      .af-page-button {
+        @extend .border,
+          .border-0,
+          .d-flex,
+          .justify-content-center,
+          .align-items-center,
+          .bg-primary,
+          .h-100;
+        height: inherit;
+
+        &:not(.enabled) {
+          opacity: 0;
+        }
+
+        .index {
+          @extend .d-none;
+        }
+
+        .title {
+          @extend .fw-lighter;
+        }
+
+        &::after {
+          display: none;
+        }
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    .af-field {
+      @extend .border-0;
+      padding: $spacer * 0.75;
+
+      @media (max-width: 575.98px) {
+        width: 100% !important;
+      }
+
+      .af-label {
+        @extend .border-primary, .border-bottom, .mb-3;
+      }
+      .af-label label {
+        @extend .text-primary, .fw-semibold, .mb-2;
+      }
+
+      .af-input {
+        #acf-field_64fb045590b32 {
+          height: 41px;
+          border-color: $secondary;
+          border-radius: $border-radius;
+        }
+
+        .acf-fields {
+          .acf-label {
+            @extend .d-none;
+          }
+          .acf-input {
+            @extend .w-100;
+          }
+        }
+
+        .select2 {
+          .select2-selection {
+            border-radius: $border-radius;
+            border-color: $secondary;
+            height: 100%;
+
+            &__rendered {
+              height: 41px;
+              padding-inline: $spacer;
+              padding-top: $spacer * 0.4;
+            }
+
+            &__placeholder {
+              color: $secondary;
+            }
+
+            &__arrow {
+              margin-top: $spacer * 0.5;
+              margin-right: $spacer * 0.5;
+
+              b {
+                border-color: $primary transparent transparent transparent;
+              }
+            }
+          }
+        }
+      }
+
+      label {
+        @extend .fw-lighter;
+        font-size: $font-size-base;
+      }
+
+      input[type='text'] {
+        @extend .form-control;
+        height: 41px;
+        border-color: $secondary;
+
+        &:focus {
+          border-color: $secondary;
+          box-shadow: none;
+        }
+      }
+
+      textarea {
+        @extend .form-control;
+        border-radius: $border-radius;
+        border-color: $secondary;
+
+        &:focus {
+          border-color: $secondary;
+          box-shadow: none;
+        }
+      }
+
+      input[type='email'] {
+        @extend .form-control;
+        height: 41px;
+        border-color: $secondary;
+
+        &:focus {
+          border-color: $secondary;
+          box-shadow: none;
+        }
+      }
+
+      input[type='radio'] {
+        accent-color: $primary;
+      }
+
+      input[type='checkbox'] {
+        accent-color: $primary;
+      }
+
+      .form-control::placeholder {
+        @extend .fw-light, .text-secondary;
+      }
+    }
+    .af-submit {
+      @extend .d-flex, .justify-content-between;
+      padding-left: 1rem;
+
+      .acf-button {
+        @extend .btn, .btn-primary, .fw-medium;
+      }
+
+      .af-previous-button {
+        @extend .btn,
+          .btn-light,
+          .text-primary,
+          .fw-medium,
+          .border,
+          .border-primary;
+      }
+
+      .af-next-button {
+        @extend .btn, .btn-primary, .fw-medium;
+
+        &:hover {
+        }
+      }
+    }
+
+    .checkbox-card {
+      .af-input {
+        .acf-checkbox-list {
+          @extend .gy-3;
+          @include make-row();
+
+          background-color: $white;
+
+          input[type='checkbox']:not(:last-child) {
+            @extend .d-none;
+          }
+
+          &:last-child {
+            label {
+              input[type='checkbox'] {
+                appearance: none;
+                border-radius: 50%;
+                width: 12px;
+                height: 12px;
+                border: 1px solid $secondary;
+                transition: 0.2s all ease-in;
+              }
+
+              input:checked {
+                border: 6px solid $primary;
+              }
+            }
+          }
+
+          &::before {
+            content: none;
+          }
+
+          li {
+            @extend .d-flex, .mb-2;
+
+            @include make-col-ready();
+
+            @include media-breakpoint-up(sm) {
+              @include make-col(6);
+            }
+            @include media-breakpoint-up(lg) {
+              @include make-col(4);
+            }
+
+            label {
+              @extend .fw-semibold, .ps-4, .pe-2, .pt-3, .pb-4;
+              cursor: pointer;
+              color: $primary;
+              box-shadow: $box-shadow;
+              border-radius: $border-radius;
+              height: 100%;
+
+              &.selected {
+                background-color: $primary;
+                color: $white;
+              }
+
+              img {
+                @extend .w-100, .mb-2;
+                margin-left: -0.5rem;
+                border-radius: $border-radius;
+                height: 284px;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Symptom Checker Group Field
+.wp-block-group {
+  .acf-form {
+    .acf-fields {
+      @extend .border-0;
+
+      .acf-label {
+      }
+
+      .acf-field-text,
+      .acf-field-email,
+      .acf-field-number {
+        @extend .border-0;
+
+        &::before {
+          @extend .d-none;
+        }
+        input {
+          padding: 0.9rem 1rem;
+          padding: ($spacer * 0.9) ($spacer);
+        }
+      }
+
+      .acf-field-radio {
+        @extend .border-0;
+
+        &::before {
+          @extend .d-none;
+        }
+      }
+    }
+  }
+}
+
+.btn-none {
+  .acf-input {
+    .acf-checkbox-list {
+      li:last-child {
+        place-self: flex-end;
+        label {
+          box-shadow: none !important;
+          padding: 0 !important;
+
+          &.selected {
+            color: $primary !important;
+            background-color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+#form_get_in_touch {
+  @extend .p-0, .shadow-none;
+}
+
+#form_symptom_checker {
+  .af-fields {
+    .af-page-wrap {
+      margin: 0;
+      @include media-breakpoint-down(lg) {
+        width: 100%;
+        transform: translate(0%, -200%);
+      }
+
+      .af-page-button {
+        .title {
+          @include media-breakpoint-down(sm) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .-dismiss {
+    transform: translateY(85%);
+  }
+}
+
+.hide-radio {
+  .acf-input {
+    .acf-radio-list {
+      li {
+        label {
+          input {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

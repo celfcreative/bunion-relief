@@ -1,0 +1,25 @@
+.wp-block-image {
+  width: 100%;
+  img {
+    border-radius: $border-radius;
+    width: 100%;
+  }
+}
+
+.wp-block-image.is-style-blog {
+  @extend .my-0;
+
+  img {
+    max-height: 50vh;
+    object-fit: cover;
+    border-radius: inherit;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 82%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 0% 100%);
+  }
+}
+
+.image-md-75 {
+  .img {
+    width: 75%;
+  }
+}

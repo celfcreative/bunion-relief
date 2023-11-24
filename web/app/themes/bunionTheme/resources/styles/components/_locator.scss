@@ -1,0 +1,98 @@
+.locator {
+  margin-bottom: -24px !important;
+
+  &-buttons {
+    height: 38.8px;
+  }
+  .locator-left {
+    // box-shadow: 0 0.187rem 0.375rem rgba(0, 0, 0, 0.8607843137);
+    box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    max-width: 500px;
+
+    @media (max-width: 767.98px) {
+      max-width: 100%;
+    }
+
+    .form-header {
+      #wpsl-search-input {
+        border: 1px solid $secondary;
+        border-radius: $border-radius;
+        width: 100% !important;
+      }
+      #wpsl-search-btn {
+        @extend .text-white;
+        background: $primary;
+        border-radius: $border-radius;
+      }
+    }
+
+    .form-content {
+      .wpsl-preloader img {
+        top: 38.5% !important;
+        left: 50px !important;
+      }
+
+      #wpsl-stores {
+        .store-list {
+          li {
+            margin-bottom: $spacer;
+            border-bottom: 1px solid $gray-500;
+
+            .store {
+              .wpsl-store-thumb {
+                height: 75px;
+                width: 75px;
+                @extend .m-0;
+              }
+
+              &-name {
+                font-size: $font-size-medium;
+              }
+              &-address {
+                font-size: $font-size-base;
+              }
+
+              &-single-content {
+                &-imgbox {
+                  .attachment-medium {
+                    border-radius: $border-radius;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .wpsl-store-location {
+          p {
+            // @extend .d-sm-flex, .flex-sm-column;
+          }
+          p img {
+            @extend .h-25, .w-25, .m-0;
+          }
+          p strong {
+            @extend .d-block;
+            font-size: $font-size-medium;
+            color: $primary;
+            font-weight: $font-weight-bold;
+          }
+        }
+        .wpsl-direction-wrap {
+          margin-bottom: $spacer * 2;
+        }
+      }
+    }
+  }
+
+  .locator-right {
+  }
+}
+
+.wpsl-dropdown {
+  border-radius: $border-radius;
+  border-color: $secondary;
+
+  .wpsl-selected-item::after {
+    border-color: $primary transparent transparent transparent;
+  }
+}

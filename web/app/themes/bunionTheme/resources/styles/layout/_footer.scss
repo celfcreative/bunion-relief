@@ -1,0 +1,51 @@
+footer {
+  background-color: $primary;
+
+  .footer {
+    &__brands {
+      .brand-img {
+        @include media-breakpoint-between(sm, xlg) {
+          &:nth-child(1) {
+            object-fit: contain;
+            height: 5rem;
+          }
+          object-fit: contain;
+          height: 3rem;
+        }
+
+        @include media-breakpoint-down(sm) {
+          &:nth-child(1) {
+            object-fit: contain;
+            height: 4rem;
+          }
+
+          object-fit: contain;
+          height: 2rem;
+        }
+      }
+    }
+    &__content {
+      @include media-breakpoint-up(lg) {
+        border-left: 1px solid $white;
+      }
+    }
+
+    &__list {
+      line-height: 1.7;
+    }
+
+    &__button {
+      @extend .text-primary;
+      transition: $btn-transition;
+      font-size: $font-size-md;
+
+      &:hover {
+        transform: $btn-animate;
+        box-shadow: $box-shadow;
+      }
+    }
+  }
+  i {
+    font-size: $h3-font-size;
+  }
+}

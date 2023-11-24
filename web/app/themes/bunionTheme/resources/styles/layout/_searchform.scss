@@ -1,0 +1,223 @@
+#form_search_location {
+  @extend .mx-auto, .my-0, .w-75, .bg-white, .position-relative, .z-1;
+
+  @include media-breakpoint-down(lg) {
+    width: 100% !important;
+  }
+
+  .af-fields {
+    .af-field {
+      .af-label {
+        @extend .border-0;
+
+        label {
+          font-size: $h3-font-size;
+        }
+
+        p {
+          @extend .fs-6;
+
+          display: inline-block;
+          width: 70%;
+          font-weight: $font-weight-light;
+
+          @media (max-width: 767.98px) {
+            width: 100%;
+          }
+        }
+      }
+
+      .af-input {
+        .acf-input-wrap {
+          width: 70%;
+          input[type='text'] {
+            border-radius: $border-radius !important;
+            font-size: $h6-font-size;
+
+            &:focus {
+              border-color: $secondary;
+              box-shadow: none;
+            }
+          }
+
+          @media (max-width: 767.98px) {
+            width: 100%;
+          }
+        }
+
+        .acf-input-prepend {
+          @extend .border-0,
+            .position-absolute,
+            .d-flex,
+            .justify-content-end,
+            .top-0,
+            .end-0;
+          transform: translate(0%, -65%);
+          background: none;
+
+          @include media-breakpoint-between(md, lg) {
+            transform: translate(7%, -65%);
+          }
+
+          @media (max-width: 767.98px) {
+            transform: translate(10%, -65%);
+          }
+
+          img {
+            @extend .position-relative, .end-0;
+            max-width: 100%;
+            width: 60%;
+
+            @media (max-width: 767.98px) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .af-submit {
+      @extend .p-0, .position-relative;
+
+      .acf-button {
+        @extend .fw-light, .position-absolute, .z-1;
+        font-size: $h6-font-size;
+        right: 15%;
+        transform: translate(-133%, -134%);
+
+        @include media-breakpoint-down(xxl) {
+          transform: translate(-112%, -133%);
+        }
+
+        @include media-breakpoint-between(md, xl) {
+          transform: translate(-106%, -133%);
+        }
+
+        @include media-breakpoint-down(md) {
+          right: -24%;
+          transform: translate(-126%, -133%);
+        }
+
+        @include media-breakpoint-down(sm) {
+          transform: translate(-13%, -133%);
+          right: 0%;
+        }
+      }
+    }
+  }
+}
+.homeForm {
+  #form_search_location {
+    transform: translateY(-50%);
+
+    @media (max-width: 575.98px) {
+      transform: translateY(-24%);
+    }
+
+    @include media-breakpoint-between(md, xxl) {
+      transform: translateY(-38%);
+    }
+  }
+}
+
+// if has class style-background
+#searchform_secondary {
+  #form_search_location {
+    background-color: $primary !important;
+    transform: none;
+
+    .acf-fields {
+      .acf-field {
+        label,
+        p {
+          color: $white !important;
+        }
+
+        .acf-input {
+          .acf-input-prepend {
+            img {
+              background-repeat: no-repeat;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.searchform_bg_full {
+  #form_search_location {
+    @media (max-width: 575.98px) {
+      transform: none;
+    }
+
+    .af-fields {
+      .af-field {
+        .acf-input-prepend {
+          @include media-breakpoint-between(md, lg) {
+            transform: translate(-1%, -65%);
+          }
+
+          @media (max-width: 767.98px) {
+            transform: translate(10%, -65%);
+          }
+        }
+      }
+
+      .af-submit {
+        .acf-button {
+          @include media-breakpoint-between(md, xl) {
+            transform: translate(-107%, -134%);
+          }
+
+          // @include media-breakpoint-between(md, lg) {
+          //   transform: translate(-114%, -144%);
+          // }
+
+          @media (max-width: 767.98px) {
+            right: 0%;
+            transform: translate(-13%, -133%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.find-doctor-search-form {
+  #form_search_location {
+    .af-fields {
+      .af-field {
+        .acf-input-prepend {
+          @include media-breakpoint-between(md, lg) {
+            transform: translate(4%, -65%);
+          }
+
+          @include media-breakpoint-down(xl) {
+            transform: translate(4%, -65%);
+          }
+
+          @media (max-width: 767.98px) {
+            transform: translate(10%, -65%);
+          }
+        }
+      }
+
+      .af-submit {
+        .acf-button {
+          right: 17%;
+          transform: translate(-132%, -134%);
+
+          @include media-breakpoint-between(md, xl) {
+            transform: translate(-97%, -134%);
+          }
+
+          @media (max-width: 767.98px) {
+            right: 0%;
+            transform: translate(-12%, -134%);
+          }
+        }
+      }
+    }
+  }
+}

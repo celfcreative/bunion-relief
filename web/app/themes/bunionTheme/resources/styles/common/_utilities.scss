@@ -1,0 +1,131 @@
+html {
+  scroll-padding-top: 69px;
+}
+
+.alignfull {
+  margin: 32px calc(50% - 50vw);
+  max-width: 100vw;
+  width: 100vw;
+}
+
+.wp-block-group {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// Index
+.reduce-index .wp-block-cover__background {
+  z-index: -1;
+}
+
+// Margin
+.minus-top-margin-sm {
+  margin-top: -2rem;
+}
+
+.minus-top-margin-md {
+  margin-top: -5rem;
+}
+
+.minus-top-margin-lg {
+  margin-top: -13rem !important;
+
+  @include media-breakpoint-down(xxl) {
+    margin-top: -14.5rem !important;
+  }
+}
+
+// Height
+.reduce-height {
+  height: auto !important;
+}
+
+// List-style
+.custom-list-style {
+  list-style: none;
+}
+
+.custom-list-style li::before {
+  content: '\2022';
+  color: $primary;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-size: 34px;
+  transform: translateY(7px);
+}
+
+@mixin make-container($padding-x: $container-padding-x) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// Usage
+.header-container {
+  @include make-container();
+
+  width: 1366px;
+}
+
+// Border Remove Md
+.remove-border {
+  @include media-breakpoint-down(md) {
+    border: none !important;
+  }
+}
+
+.remove-img-radius {
+  img {
+    border-radius: 0 !important;
+  }
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+.image-stick-top {
+  transform: translateY(-8%);
+
+  @include media-breakpoint-between(md, lg) {
+    transform: translateY(-11%);
+  }
+}
+
+.important-risk {
+  .question {
+    .accordion {
+      .accordion-item {
+        background-color: $tertiary;
+
+        .accordion-button {
+          background-color: $tertiary !important;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.nav-max-width {
+  max-width: 1366px;
+}
+.surveyQuiz {
+  @include media-breakpoint-down(md) {
+    width: 100% !important;
+  }
+
+  @include media-breakpoint-down(lg) {
+    .wp-block-column:nth-child(2) {
+      display: none;
+    }
+  }
+}
+
+.transform-Ymiddle {
+  transform: translateY(-50%);
+}

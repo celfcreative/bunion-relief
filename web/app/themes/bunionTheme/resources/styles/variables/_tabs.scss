@@ -1,0 +1,70 @@
+// $nav-link-padding-y: 0.5rem;
+// $nav-link-padding-x: 1rem;
+// $nav-link-color: $primary;
+// $nav-link-transition: color 0.15s ease-in-out,
+//   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+.tab {
+  .tab-img-box {
+    img {
+      min-height: 250px;
+      object-fit: cover;
+    }
+  }
+}
+
+.wp-block-tabs {
+  .nav-tabs {
+    @extend .border-0;
+
+    .nav-item {
+      @extend .bg-secondary, .text-primary;
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+
+      &:nth-child(2) {
+        transform: translateX(6%);
+      }
+      &:nth-child(3) {
+        transform: translateX(12%);
+      }
+      &:nth-child(4) {
+        transform: translateX(16%);
+      }
+      &:nth-child(5) {
+        transform: translateX(24%);
+      }
+    }
+    .active {
+      @extend .bg-primary, .text-white, .border-primary;
+    }
+  }
+
+  .tab-content {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  @media (max-width: 767.98px) {
+    display: none;
+  }
+}
+
+.accordionTabs {
+  display: none;
+
+  .accordion-item {
+    .accordion-header {
+      .accordion-button {
+        color: $primary;
+      }
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    display: block;
+  }
+  // @include media-breakpoint-down(md) {
+  //   display: block;
+  // }
+}
