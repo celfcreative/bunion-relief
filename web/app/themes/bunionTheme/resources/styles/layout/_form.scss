@@ -341,10 +341,12 @@
 #form_symptom_checker {
   .af-fields {
     .af-page-wrap {
-      margin: 0;
+      margin-left: 1rem;
+
       @include media-breakpoint-down(lg) {
-        width: 100%;
+        width: 105%;
         transform: translate(0%, -200%);
+        margin-left: -1rem;
       }
 
       .af-page-button {
