@@ -9,16 +9,16 @@
             @endif
 
             <div class="store-single-buttons w-100 mx-auto">
-                <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow"
+                <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow fs-7"
                     data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get In
                     Touch</button>
                 @if ($surgeonPhone)
                     <a href="tel:{{ $surgeonPhone }}"
-                        class="btn btn-light border-dark-subtle store-single-button shadow">{{ $surgeonPhone }}</a>
+                        class="btn btn-light border-dark-subtle store-single-button shadow surgeon-phone fs-7">{{ $surgeonPhone }}</a>
                 @endif
                 @if ($surgeonURL)
                     <a href="{{ $surgeonURL }}"
-                        class="btn btn-light border-dark-subtle store-single-button shadow">View
+                        class="btn btn-light border-dark-subtle store-single-button shadow fs-7">View
                         Website</a>
                 @endif
             </div>
@@ -26,10 +26,9 @@
 
         <div class="w-100">
             <h2 class="store-single-title text-primary fw-semibold">{{ $surgeonName }}</h2>
-            <h3 class="text-primary">Product Line</h3>
             @if ($surgeonCategory)
                 @foreach ($surgeonCategory as $key => $category)
-                    <p class="fw-light mb-1 d-sm-inline-block d-block">
+                    <p class="h3 fw-light mb-1 d-sm-inline-block d-block">
                         {{ $category->name }}
                         @if (!$loop->last)
                             ,
@@ -58,43 +57,46 @@
     </div>
 @else
     <div
-        class="{{ $block->classes }} store-single-content d-flex align-items-start gap-md-6 gap-4 my-4 my-md-6 flex-column flex-lg-row">
+        class="{{ $block->classes }} store-single-content d-flex align-items-start gap-md-6 gap-4 my-4 my-md-6 flex-column">
         <div>
             @if ($surgeonImage)
                 <div class="store-single-content-img-box d-flex flex-column gap-2 mb-3">
                     {!! $surgeonImage !!}
                 </div>
             @endif
-
-            <div class="store-single-buttons w-100 mx-auto">
-                <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow"
-                    data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get In
-                    Touch</button>
-                @if ($surgeonPhone)
-                    <a href="tel:{{ $surgeonPhone }}"
-                        class="btn btn-light border-dark-subtle store-single-button shadow">{{ $surgeonPhone }}</a>
-                @endif
-                @if ($surgeonURL)
-                    <a href="{{ $surgeonURL }}"
-                        class="btn btn-light border-dark-subtle store-single-button shadow">View
-                        Website</a>
-                @endif
-            </div>
         </div>
 
         <div class="w-100">
-            <h2 class="store-single-title text-primary fw-semibold">{{ $surgeonName }}</h2>
-            <h3 class="text-primary">Product Line</h3>
-            @if ($surgeonCategory)
-                @foreach ($surgeonCategory as $category)
-                    <p class="fw-light mb-1 d-sm-inline-block d-block">
-                        {{ $category->name }}
-                        @if (!$loop->last)
-                            ,
-                        @endif
-                    </p>
-                @endforeach
-            @endif
+            <div>
+                <h2 class="store-single-title text-primary fw-semibold">{{ $surgeonName }}</h2>
+                @if ($surgeonCategory)
+                    @foreach ($surgeonCategory as $category)
+                        <p class="h3 fw-light d-sm-inline-block d-block mb-0">
+                            {{ $category->name }}
+                            @if (!$loop->last)
+                                ,
+                            @endif
+                        </p>
+                    @endforeach
+                    <div class="d-flex flex-column flex-md-row justify-content-between w-100 my-4 gap-3">
+                        <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow fs-7"
+                            data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get
+                            In
+                            Touch</button>
+                        <div class="d-flex flex-column flex-md-row gap-3">
+                            @if ($surgeonPhone)
+                                <a href="tel:{{ $surgeonPhone }}"
+                                    class="btn btn-light border-dark-subtle store-single-button shadow surgeon-phone fs-7">{{ $surgeonPhone }}</a>
+                            @endif
+                            @if ($surgeonURL)
+                                <a href="{{ $surgeonURL }}"
+                                    class="btn btn-light border-dark-subtle store-single-button shadow fs-7">View
+                                    Website</a>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+            </div>
             <div style="height:2px" aria-hidden="true" class="w-100 bg-secondary my-3 opacity-75"></div>
             <div class="store-single-description mb-4">
                 <InnerBlocks />

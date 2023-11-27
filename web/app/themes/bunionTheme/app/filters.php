@@ -99,14 +99,12 @@ add_filter('wpsl_listing_template', function () {
             <div>
                 <div>
                     <h3 class='store-single-title text-primary fw-semibold fs-5'> <%= store %> </h3>
-                    <p class='text-primary fw-medium mb-0'>Product Line</p>
                     <% if ( terms ) { %>
                         <p class='fw-light mb-0'><%= terms %></p>
                     <% } %>
 
                     <div class='w-100 bg-secondary my-2' style='height:2px';></div>
 
-                        <p class='text-primary fw-medium mb-0'>Address</p>
                         <span class='store-address fw-light'> <%= address %> </span>
 
                         <% if ( address2 ) { %> 
@@ -126,7 +124,7 @@ add_filter('wpsl_listing_template', function () {
 
                 <div class ='locator-buttons d-flex gap-3 mt-2'>
                 <% if (phone) { %>
-                    <a href='tel:<%= phone %>' class='btn btn-primary shadow'><%= phone %></a>
+                    <a href='tel:<%= phone %>' class='btn btn-primary shadow surgeon-phone'><%= phone %></a>
                 <% } %>                  
                     <p><a href='<%= permalink %>?distance=<%= distance %>$wpsl_settings[distance_unit]' class='btn btn-light border-dark-subtle text-capitalize shadow'>view profile</a></p>
                 </div>

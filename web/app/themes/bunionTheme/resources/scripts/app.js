@@ -111,7 +111,7 @@ domReady(async () => {
       storeListItems.forEach(function (listItem) {
         const dataKey = listItem.getAttribute('data-key');
 
-        console.log(listItem);
+        // console.log(listItem);
         const surgeonTitle = listItem.querySelector(
           '.store-single-title',
         )?.innerHTML;
@@ -161,27 +161,30 @@ domReady(async () => {
     window.onload = function () {
       authorizeClick();
     };
-  }
+  };
 
   /**
   extract Distance in URL to Profile
   */
-  const queryDistance = window.location.search;
-  const urlDistanceParam = new URLSearchParams(queryDistance);
-  const distance = urlDistanceParam.get('distance');
-  const distanceIcon = document.querySelector('.locate-icon');
-  const distanceFrom = document.querySelector('.distanceFrom');
-
-  if (distance) {
-    distanceFrom.textContent = distance;
-  } else {
-    distanceIcon.classList.add('d-none');
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const queryDistance = window.location.search;
+    const urlDistanceParam = new URLSearchParams(queryDistance);
+    const distance = urlDistanceParam.get('distance');
+    const distanceIcon = document.querySelector('.locate-icon');
+    const distanceFrom = document.querySelector('.distanceFrom');
+  
+    if (distanceIcon !== null && distanceFrom !== null) {
+      if (distance) {
+        distanceFrom.textContent = distance;
+      } else {
+        distanceIcon.classList.add('d-none');
+      }
+    }
+  })
 
   /**
   Blog Trigger Modal
   */
-
   const modalDownloadElement = document.querySelector('#downloadModal');
 
   if (modalDownloadElement) {
@@ -200,6 +203,31 @@ domReady(async () => {
   }
 
   console.log(document.querySelector('.acf-form-submit'));
+
+  /**
+   * Auto Format Phone Number
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    function formatPhoneNumber(phoneNumber) {
+      phoneNumber = phoneNumber.replace(/\D/g, '');
+
+      // Check if the phone number has 10 digits
+      if (phoneNumber.length === 10) {
+        // Format the phone number with dashes (###-###-####)
+        phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+      }
+
+      return phoneNumber;
+    }
+
+    let surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
+
+    surgeonPhoneElements.forEach(function (element) {
+      let phoneNumber = element.textContent.trim();
+      phoneNumber = formatPhoneNumber(phoneNumber);
+      element.textContent = phoneNumber;
+    });
+  });
 });
 
 loadMore();
