@@ -38,6 +38,10 @@
               border-color: $secondary;
               box-shadow: none;
             }
+
+            @media (max-width: 320px) {
+              font-size: $font-size-sm;
+            }
           }
 
           @media (max-width: 767.98px) {
@@ -83,23 +87,23 @@
         @extend .fw-light, .position-absolute, .z-1;
         font-size: $h6-font-size;
         right: 15%;
-        transform: translate(-133%, -134%);
+        transform: translate(-131%, -129%);
 
         @include media-breakpoint-down(xxl) {
-          transform: translate(-112%, -133%);
+          transform: translate(-111%, -129%);
         }
 
         @include media-breakpoint-between(md, xl) {
-          transform: translate(-106%, -133%);
+          transform: translate(-105%, -129%);
         }
 
         @include media-breakpoint-down(md) {
           right: -24%;
-          transform: translate(-126%, -133%);
+          transform: translate(-129%, -129%);
         }
 
         @include media-breakpoint-down(sm) {
-          transform: translate(-13%, -133%);
+          transform: translate(-13%, -129%);
           right: 0%;
         }
       }
@@ -127,6 +131,29 @@
     transform: none;
 
     .acf-fields {
+      .af-submit {
+        .acf-button {
+          height: 39px;
+          transform: translate(-132%, -133%);
+
+          @include media-breakpoint-down(xxl) {
+            transform: translate(-112%, -133%);
+          }
+
+          @include media-breakpoint-down(xl) {
+            transform: translate(-108%, -133%);
+          }
+
+          @include media-breakpoint-down(md) {
+            transform: translate(-129%, -133%);
+          }
+
+          @include media-breakpoint-down(sm) {
+            transform: translate(-14%, -133%);
+          }
+        }
+      }
+
       .acf-field {
         label,
         p {
@@ -216,6 +243,88 @@
             right: 0%;
             transform: translate(-12%, -134%);
           }
+        }
+      }
+    }
+  }
+}
+
+#customSearch {
+  @extend .shadow, .rounded, .px-5, .pb-3;
+
+  .af-form {
+    @extend .w-100, .shadow-none, .px-0;
+
+    .af-fields {
+      .af-field {
+        @extend .px-0;
+
+        .af-label {
+          label {
+            font-size: 2.2rem;
+          }
+
+          @include media-breakpoint-down(md) {
+            label {
+              font-size: 1.8rem;
+            }
+
+            p {
+              width: 100%;
+            }
+          }
+        }
+
+        .af-input {
+          .acf-input-prepend {
+            transform: translate(0%, -110%);
+
+            @include media-breakpoint-down(lg) {
+              display: none !important;
+            }
+          }
+
+          .acf-input-wrap {
+            width: 81%;
+
+            @include media-breakpoint-down(xxl) {
+              width: 76.5%;
+            }
+
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .af-field-radius {
+        @extend .d-flex, .position-absolute;
+        right: 10.2%;
+        bottom: 0;
+
+        @include media-breakpoint-down(xxl) {
+          right: 12.5%;
+        }
+
+        @include media-breakpoint-down(lg) {
+          right: 17.5%;
+        }
+
+        @include media-breakpoint-down(md) {
+          right: 23.5%;
+        }
+
+        @include media-breakpoint-down(sm) {
+          right: 23.5%;
+          position: initial !important;
+        }
+      }
+
+      .af-submit {
+        button {
+          right: 0;
+          transform: translate(0%, -133%);
         }
       }
     }

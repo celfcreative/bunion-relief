@@ -31,7 +31,7 @@
                             <p class="text-white my-0 fw-light fs-6">{!! $address !!}</p>
                             <p class="text-white my-0 fw-light fs-6">{!! $phoneNum !!}</p>
                         </ul>
-                        <ul class="nav gap-3 mt-2">
+                        <ul class="nav gap-3 my-2">
                             @if ($socialFB)
                                 <li class="nav-link p-0"><a href="{{ $socialFB }}"
                                         class="icon icon-link icon-link-hover" target="_blank"
@@ -52,6 +52,7 @@
                                 </li>
                             @endif
                         </ul>
+                        <a href="{{ home_url('/citation') }}" class="text-white">Citation</a>
                     </div>
                 </div>
 
