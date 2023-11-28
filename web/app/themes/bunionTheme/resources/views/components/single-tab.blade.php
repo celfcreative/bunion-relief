@@ -6,7 +6,7 @@
         </div>
         <div class="tab-body col-lg-8 col-md-6 pe-md-4 ps-md-2 px-5 pt-md-6">
             <h3 class="text-primary fw-bold my-3 mt-0 mt-md-3">{{ $tabTitle }}</h3>
-            <p class="fw-light mb-4 ">{{ $tabDescription }}</p>
+            <p class="fw-light mb-4 ">{!! $tabDescription !!}</p>
             @if ($hasButton)
                 <div class="wp-block-button is-style-outline  mb-4">
                     <a href="{{ get_the_permalink($tabButton->ID) }}"

@@ -107,7 +107,7 @@
                 <p class="mb-1">{{ $surgeonAddress1 }} {{ $surgeonAddress2 }}</p>
                 <p class="mb-1">{{ $surgeonCity }}, {{ $surgeonZip }}</p>
                 <p class="mb-1">{{ $surgeonState }}, {{ $surgeonCountry }}</p>
-                <p class='text-primary fw-light d-inline-block'>
+                <p class='text-primary fw-light d-inline-block locate-icon'>
                     <i class='bi bi-geo-alt'></i>
                 </p>
                 <p class="distanceFrom text-primary fw-light d-inline-block"></p>

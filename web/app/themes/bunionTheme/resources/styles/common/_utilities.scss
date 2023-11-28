@@ -28,10 +28,19 @@ html {
 }
 
 .minus-top-margin-lg {
-  margin-top: -13rem !important;
+  margin-top: -17rem !important;
 
+  
   @include media-breakpoint-down(xxl) {
     margin-top: -16.5rem !important;
+  }
+
+  @include media-breakpoint-down(lg) {
+    margin-top: -14.5rem !important;
+  }
+
+  @media (max-width: 423px) {
+    margin-top: -16.7rem !important;
   }
 }
 
