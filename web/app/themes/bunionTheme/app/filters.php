@@ -94,9 +94,9 @@ add_filter('wpsl_listing_template', function () {
     return
         "
     <li data-key='<%= id %>'>
-        <div class='store d-flex gap-3 p-3 flex-column flex-lg-row'>
+        <div class='store d-flex gap-3 p-3 flex-column flex-lg-row pb-5'>
             <%= thumb %>
-            <div>
+            <div class='w-100'>
                 <div>
                     <h3 class='store-single-title text-primary fw-semibold fs-5'> <%= store %> </h3>
                     <% if ( terms ) { %>
@@ -122,11 +122,11 @@ add_filter('wpsl_listing_template', function () {
                     </p>
                 </div>
 
-                <div class ='locator-buttons d-flex gap-3 mt-2'>
+                <div class ='locator-buttons d-flex gap-3 mt-2 flex-column flex-xl-row'>
+                <a href='<%= permalink %>?distance=<%= distance %>$wpsl_settings[distance_unit]' class='btn btn-light border-dark-subtle text-capitalize shadow'>view profile</a>
                 <% if (phone) { %>
                     <a href='tel:<%= phone %>' class='btn btn-primary shadow surgeon-phone'><%= phone %></a>
                 <% } %>                  
-                    <p><a href='<%= permalink %>?distance=<%= distance %>$wpsl_settings[distance_unit]' class='btn btn-light border-dark-subtle text-capitalize shadow'>view profile</a></p>
                 </div>
             </div>
         </div>
@@ -158,27 +158,31 @@ add_filter('wpsl_listing_template', function () {
 });
 
 /**
- * Home search form redirect > URL
+ * Search Form Redirect URL
  */
 add_action('af/form/submission/key=form_search_location', function ($form, $fields, $args) {
 
     $zip = af_get_field('find_a_bunion_doctor_near_you');
+    $radius = af_get_field('radius');
 
-    $urlQuery = http_build_query(
-        [
-            'zip_code' => $zip
-        ]
-    );
+    $urlQuery = ['zip_code' => $zip];
 
-    $location = home_url() . '/find-a-doctor/' . '?' . $urlQuery;
+    if ($radius) {
+        $urlQuery = [
+            'zip_code' => $zip,
+            'radius' => $radius,            
+        ];
+    }
+
+    $query = http_build_query($urlQuery);
+    $location = home_url('/find-a-doctor/') . '?' . $query;
 
     header("Location: " . $location);
     exit;
 }, 10, 3);
 
-
 /**
- * 
+ * Allow Svg Upload
  */
 add_filter('upload_mimes', function ($mimes) {
     $mimes['svg'] = 'image/svg+xml';
