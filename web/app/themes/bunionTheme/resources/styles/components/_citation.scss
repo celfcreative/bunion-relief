@@ -1,0 +1,15 @@
+.wp-block-citation.is-style-light {
+  .citation {
+    .accordion {
+      .accordion-item {
+        background-color: unset;
+
+        .accordion-button {
+          background-color: unset !important;
+          font-size: $h5-font-size;
+          color: $primary;
+        }
+      }
+    }
+  }
+}

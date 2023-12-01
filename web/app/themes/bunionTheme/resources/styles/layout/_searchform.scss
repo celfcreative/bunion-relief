@@ -1,4 +1,4 @@
-#form_search_location {
+#form_search_location, #form_search_location_radius {
   @extend .mx-auto, .my-0, .w-75, .bg-white, .position-relative, .z-1;
 
   @include media-breakpoint-down(lg) {

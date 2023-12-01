@@ -24,6 +24,17 @@ return [
                 'plural' => 'Questions',
             ],
         ],
+        'citation' => [
+            'enter_title_here' => 'Enter citation here',
+            'menu_icon' => 'dashicons-admin-comments',
+            'supports' => ['title', 'editor', 'author', 'revisions'],
+            'show_in_rest' => true,
+            'has_archive' => false,
+            'labels' => [
+                'singular' => 'Citation',
+                'plural' => 'Citations',
+            ],
+        ],
         'blog' => [
             'enter_title_here' => 'Enter blog title',
             'menu_icon' => 'dashicons-welcome-write-blog',

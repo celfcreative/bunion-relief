@@ -28,15 +28,18 @@ html {
 }
 
 .minus-top-margin-lg {
-  margin-top: -17rem !important;
+  margin-top: -15rem !important;
 
-  
   @include media-breakpoint-down(xxl) {
     margin-top: -16.5rem !important;
   }
 
   @include media-breakpoint-down(lg) {
     margin-top: -14.5rem !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-top: -15.5rem !important;
   }
 
   @media (max-width: 423px) {
@@ -105,21 +108,6 @@ body {
   }
 }
 
-.important-risk {
-  .question {
-    .accordion {
-      .accordion-item {
-        background-color: $tertiary;
-
-        .accordion-button {
-          background-color: $tertiary !important;
-          color: $primary;
-        }
-      }
-    }
-  }
-}
-
 .nav-max-width {
   max-width: 1366px;
 }
@@ -137,4 +125,10 @@ body {
 
 .transform-Ymiddle {
   transform: translateY(-50%);
+}
+
+.image-reduce {
+  img {
+    width: 60% !important;
+  }
 }

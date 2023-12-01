@@ -161,18 +161,18 @@ domReady(async () => {
     window.onload = function () {
       authorizeClick();
     };
-  };
+  }
 
   /**
   extract Distance in URL to Profile
   */
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const queryDistance = window.location.search;
     const urlDistanceParam = new URLSearchParams(queryDistance);
     const distance = urlDistanceParam.get('distance');
     const distanceIcon = document.querySelector('.locate-icon');
     const distanceFrom = document.querySelector('.distanceFrom');
-  
+
     if (distanceIcon !== null && distanceFrom !== null) {
       if (distance) {
         distanceFrom.textContent = distance;
@@ -180,29 +180,30 @@ domReady(async () => {
         distanceIcon.classList.add('d-none');
       }
     }
-  })
+  });
 
   /**
   Blog Trigger Modal
   */
-  const modalDownloadElement = document.querySelector('#downloadModal');
+  document.addEventListener('DOMContentLoaded', function () {
+    const modalDownloadElement = document.querySelector('#downloadModal');
 
-  if (modalDownloadElement) {
-    const modalDownload = new bootstrap.Modal(modalDownloadElement);
+    if (modalDownloadElement) {
+      const modalDownload = new bootstrap.Modal(modalDownloadElement);
 
-    function checkScrollPosition() {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
+      function checkScrollPosition() {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
 
-      if (scrollPosition >= windowHeight / 2) {
-        modalDownload.show();
-        window.removeEventListener('scroll', checkScrollPosition);
+        if (scrollPosition >= windowHeight / 2) {
+          modalDownload.show();
+          window.removeEventListener('scroll', checkScrollPosition);
+        }
       }
+      window.addEventListener('scroll', checkScrollPosition);
     }
-    window.addEventListener('scroll', checkScrollPosition);
-  }
-
-  console.log(document.querySelector('.acf-form-submit'));
+    console.log(document.querySelector('.acf-form-submit'));
+  });
 
   /**
    * Auto Format Phone Number
@@ -227,6 +228,78 @@ domReady(async () => {
       phoneNumber = formatPhoneNumber(phoneNumber);
       element.textContent = phoneNumber;
     });
+  });
+
+  /**
+   * ACF Form Select Placeholder
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    const waitForElement = setInterval(function () {
+      const contactPlaceholderElement = document.querySelector(
+        '.select2-selection__rendered',
+      );
+
+      if (contactPlaceholderElement) {
+        clearInterval(waitForElement);
+
+        const contactPlaceholderText =
+          'What system do you want to learn more about?';
+        contactPlaceholderElement.classList.add('text-secondary');
+        contactPlaceholderElement.textContent = contactPlaceholderText;
+        console.log(contactPlaceholderText);
+      }
+    }, 100);
+
+    setTimeout(function () {
+      clearInterval(waitForElement);
+      console.error(
+        'Element with class .select2-selection__rendered not found',
+      );
+    }, 5000);
+  });
+
+  /**
+   * Custom Search Form with Map
+   */
+  document.addEventListener('DOMContentLoaded', function () {
+    const formSearch = document.querySelector('#search_form_location_radius');
+
+    if (formSearch) {
+      const selectRadiusDiv = formSearch.querySelector('#select-radius');
+
+      if (selectRadiusDiv) {
+        const inputRadius = selectRadiusDiv.getElementsByClassName('af-input');
+
+        if (inputRadius.length > 0) {
+          const dropdown = inputRadius[0].querySelector('select');
+
+          if (dropdown) {
+            formSearch.addEventListener('submit', function (event) {
+              event.preventDefault();
+
+              const selectedRadius = dropdown.value;
+              console.log('selected radius:', selectedRadius);
+
+              const currentPageURL = window.location.href;
+              console.log('current page url:', currentPageURL);
+
+              const url = new URL(currentPageURL);
+
+              url.searchParams.set('radius', selectedRadius);
+              console.log('updated url:', url.toString());
+
+              window.location.href = url.toString();
+            });
+          } else {
+            console.log('Dropdown not found inside #select-radius');
+          }
+        }
+      } else {
+        console.log('Element with ID #select-radius not found');
+      }
+    } else {
+      console.log('Form #search_form_location_radius not found');
+    }
   });
 });
 

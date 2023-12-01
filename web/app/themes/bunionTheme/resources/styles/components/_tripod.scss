@@ -1,9 +1,9 @@
 .sectionTripod {
-  transform: translateY(30%);
+  transform: translateY(29.5%);
   margin-top: $spacer - 10;
 
   @include media-breakpoint-down(xxl) {
-    transform: translateY(31%);
+    transform: translateY(31.7%);
   }
   @media (max-width: 349.9px) {
     transform: translateY(35%);
