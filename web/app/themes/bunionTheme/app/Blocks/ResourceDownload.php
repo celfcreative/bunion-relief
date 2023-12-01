@@ -141,7 +141,6 @@ class ResourceDownload extends Block
     public function with()
     {
         return [
-            'items' => $this->items(),
             'files' => $this->getFiles(),
         ];
     }
@@ -156,31 +155,37 @@ class ResourceDownload extends Block
         $resourceDownload = new FieldsBuilder('resource_download');
 
         $resourceDownload
-            ->addRepeater('items')
-            ->addText('item')
-            ->endRepeater()
-
-            ->addRelationship('files', [
+            ->addPostObject('files', [
                 'label' => 'Choose Resource',
-                'post_type' => 'dlm_download',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => [],
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'post_type' => ['dlm_download'],
+                'taxonomy' => [],
+                'allow_null' => 0,
+                'multiple' => 0,
+                'return_format' => 'object',
+                'ui' => 1,
                 'filters' => [
                     0 => 'search',
-                ],
+                ]
             ]);
+
+        // ->addRelationship('files', [
+        //     'label' => 'Choose Resource',
+        //     'post_type' => 'dlm_download',
+        //     'filters' => [
+        //         0 => 'search',
+        //     ],
+        // ]);
 
         return $resourceDownload->build();
     }
-
-    /**
-     * Return the items field.
-     *
-     * @return array
-     */
-    public function items()
-    {
-        return get_field('items') ?: $this->example['items'];
-    }
-
     /**
      * Assets to be enqueued when rendering the block.
      *

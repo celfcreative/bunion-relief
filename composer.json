@@ -62,7 +62,8 @@
     "wpackagist-plugin/crop-thumbnails": "^1.7",
     "wpackagist-plugin/wordfence": "^7.10",
     "wpackagist-plugin/autoptimize": "^3.1",
-    "wpackagist-plugin/seo-by-rank-math": "^1.0"
+    "wpackagist-plugin/seo-by-rank-math": "^1.0",
+    "wpackagist-plugin/download-monitor": "^4.9"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.7.1",
