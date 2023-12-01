@@ -80,7 +80,7 @@
       }
 
       .af-input {
-        #acf-field_64fb045590b32 {
+        select[data-placeholder='Select'] {
           height: 41px;
           border-color: $secondary;
           border-radius: $border-radius;
@@ -179,6 +179,7 @@
 
       .acf-button {
         @extend .btn, .btn-primary, .fw-medium;
+        height: 41px;
       }
 
       .af-previous-button {
@@ -301,6 +302,14 @@
           @extend .d-none;
         }
       }
+
+      .acf-field-select {
+        @extend .border-0;
+
+        &::before {
+          @extend .d-none;
+        }
+      }
     }
   }
 }
@@ -331,10 +340,16 @@
 #form_symptom_checker {
   .af-fields {
     .af-page-wrap {
-      margin: 0;
+      margin-left: 1rem;
+
       @include media-breakpoint-down(lg) {
-        width: 100%;
+        width: 105%;
         transform: translate(0%, -200%);
+        margin-left: -1rem;
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: calc(100vw - 8vw);
       }
 
       .af-page-button {

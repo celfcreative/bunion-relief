@@ -22,6 +22,18 @@ class TabInfo extends Field
         $tabInfo
             ->addTextarea('tab_description', [
                 'label' => 'Tab Description',
+                'instructions' => '',
+                'required' => 0,
+                'wrapper' => [
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ],
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'new_lines' => 'br', // Possible values are 'wpautop', 'br', or ''.
             ])
             ->addTrueFalse('button_true_false', [
                 'label' => 'Add Button',
