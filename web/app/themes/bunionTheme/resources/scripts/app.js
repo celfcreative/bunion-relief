@@ -100,8 +100,10 @@ domReady(async () => {
     });
   }
 
+  /**
+   * Render surgeons on wpsl
+   */
   document.addEventListener('DOMContentLoaded', function () {
-    // Multiple Surgeon page, populate Name > Form
     const storeList = document.querySelector('#wpsl-stores ul');
     const config = {attributes: true, childList: true, subtree: true};
 
@@ -151,10 +153,20 @@ domReady(async () => {
   const queryZipCode = window.location.search;
   const urlParams = new URLSearchParams(queryZipCode);
   const zipCode = urlParams.get('zip_code');
+  const radiusCode = urlParams.get('radius');
 
   const authorizeClick = function () {
     searchSurgeonBtn.click();
   };
+
+  function selectRadius(id, valueSelect) {
+    let element = document.getElementById(id);
+    element.value = valueSelect;
+  }
+
+  if (radiusCode) {
+    selectRadius('wpsl-radius-dropdown', radiusCode);
+  }
 
   if (zipCode) {
     searchBox.setAttribute('value', zipCode);
@@ -166,21 +178,19 @@ domReady(async () => {
   /**
   extract Distance in URL to Profile
   */
-  document.addEventListener('DOMContentLoaded', function () {
-    const queryDistance = window.location.search;
-    const urlDistanceParam = new URLSearchParams(queryDistance);
-    const distance = urlDistanceParam.get('distance');
-    const distanceIcon = document.querySelector('.locate-icon');
-    const distanceFrom = document.querySelector('.distanceFrom');
+  const queryDistance = window.location.search;
+  const urlDistanceParam = new URLSearchParams(queryDistance);
+  const distance = urlDistanceParam.get('distance');
+  const distanceIcon = document.querySelector('.locate-icon');
+  const distanceFrom = document.querySelector('.distanceFrom');
 
-    if (distanceIcon !== null && distanceFrom !== null) {
-      if (distance) {
-        distanceFrom.textContent = distance;
-      } else {
-        distanceIcon.classList.add('d-none');
-      }
+  if (distanceIcon !== null && distanceFrom !== null) {
+    if (distance) {
+      distanceFrom.textContent = distance;
+    } else {
+      distanceIcon.classList.add('d-none');
     }
-  });
+  }
 
   /**
   Blog Trigger Modal
@@ -212,22 +222,21 @@ domReady(async () => {
     function formatPhoneNumber(phoneNumber) {
       phoneNumber = phoneNumber.replace(/\D/g, '');
 
-      // Check if the phone number has 10 digits
       if (phoneNumber.length === 10) {
-        // Format the phone number with dashes (###-###-####)
         phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
       }
-
       return phoneNumber;
     }
 
-    let surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
+    setTimeout(function () {
+      let surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
 
-    surgeonPhoneElements.forEach(function (element) {
-      let phoneNumber = element.textContent.trim();
-      phoneNumber = formatPhoneNumber(phoneNumber);
-      element.textContent = phoneNumber;
-    });
+      surgeonPhoneElements.forEach(function (element) {
+        let phoneNumber = element.textContent.trim();
+        phoneNumber = formatPhoneNumber(phoneNumber);
+        element.textContent = phoneNumber;
+      });
+    }, 500);
   });
 
   /**
