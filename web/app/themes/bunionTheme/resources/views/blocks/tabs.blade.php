@@ -1,4 +1,4 @@
-<div class="{{ $block->classes }} ">
+<div class="{{ $block->classes }} d-none d-lg-block ">
     @if ($tabs)
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             @foreach ($tabs as $tab => $value)
@@ -21,7 +21,7 @@
     @endif
 </div>
 
-<div class="accordion accordionTabs" id="tabAccordion">
+<div class="accordion accordionTabs d-block d-lg-none" id="tabAccordion">
     @if ($tabs)
         @foreach ($tabs as $tab => $value)
             <div class="accordion-item">

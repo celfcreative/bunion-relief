@@ -21,7 +21,7 @@ class QuoteSlide extends Component
         $this->location = get_field('location', $id);
         $this->quote = get_field('quote', $id);
         $this->name = get_the_title($id);
-        $this->image = get_the_post_thumbnail_url($id);
+        $this->image = get_the_post_thumbnail_url($id, '500-image');
     }
 
     /**

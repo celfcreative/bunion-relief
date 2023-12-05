@@ -1,9 +1,11 @@
 <!-- Tab panes -->
 <div class="tab ">
     <div class="row justify-content-center align-items-start w-100 m-0">
-        <div class="tab-img-box col-lg-4 col-md-6 p-3 px-4 ps-2">
-            <img src="{{ $tabImage }}" alt="tab image 1" class="tab-img w-100 rounded p-1">
-        </div>
+        @if ($tabImage)
+            <div class="tab-img-box col-lg-4 col-md-6 p-3 px-4 ps-2">
+                <img src="{{ $tabImage }}" alt="tab image 1" class="tab-img w-100 rounded p-1">
+            </div>
+        @endif
         <div class="tab-body col-lg-8 col-md-6 my-auto pt-3">
             <h3 class="text-primary fw-bold my-3 mt-0 mt-md-3">{{ $tabTitle }}</h3>
             <p class="fw-light mb-4 ">{!! $tabDescription !!}</p>

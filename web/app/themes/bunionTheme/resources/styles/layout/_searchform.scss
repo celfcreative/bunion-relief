@@ -141,7 +141,7 @@
           }
 
           @include media-breakpoint-down(xl) {
-            transform: translate(-108%, -133%);
+            transform: translate(-107%, -133%);
           }
 
           @include media-breakpoint-down(md) {
@@ -193,18 +193,32 @@
 
       .af-submit {
         .acf-button {
-          @include media-breakpoint-between(md, xl) {
-            transform: translate(-107%, -134%);
+          height: 37px;
+          transform: translate(-133%, -138%);
+
+          @include media-breakpoint-down(xxl) {
+            transform: translate(-112%, -138%);
           }
 
+          @include media-breakpoint-down(xl) {
+            transform: translate(-108%, -138%);
+          }
+
+          @include media-breakpoint-down(md) {
+            transform: translate(-131%, -138%);
+          }
+
+          @include media-breakpoint-down(sm) {
+            transform: translate(-14%, -138%);
+          }
           // @include media-breakpoint-between(md, lg) {
           //   transform: translate(-114%, -144%);
           // }
 
-          @media (max-width: 767.98px) {
-            right: 0%;
-            transform: translate(-13%, -133%);
-          }
+          // @media (max-width: 767.98px) {
+          //   right: 0%;
+          //   transform: translate(-13%, -133%);
+          // }
         }
       }
     }

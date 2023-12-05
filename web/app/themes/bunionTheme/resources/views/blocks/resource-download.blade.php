@@ -11,7 +11,7 @@
                     <div class="modal-header border-0 pb-0">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body pt-0">
+                    <div class="modal-body py-0">
                         <div>
                             <h2 class="modal-title px-3 text-primary fw-bold mb-3" id="downloadModalLabel"> {{ $files->post_title }} </h2>
                             <p class="px-3 mb-0">
@@ -23,7 +23,8 @@
                             @php(advanced_form('form_resource_download', [
                                 'ajax' => true, 
                                 'values' => [
-                                    'form_resource_download' => $files->ID
+                                    'form_resource_download' => $files->ID,
+                                    'submit_text' => 'Download',
                                     ]
                                     ]))
                         @endif

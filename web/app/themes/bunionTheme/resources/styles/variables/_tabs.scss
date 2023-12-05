@@ -44,10 +44,6 @@
     border-bottom-right-radius: $border-radius;
     border-top-right-radius: $border-radius;
   }
-
-  @media (max-width: 767.98px) {
-    display: none;
-  }
 }
 
 .accordionTabs {
@@ -60,11 +56,4 @@
       }
     }
   }
-
-  @media (max-width: 767.98px) {
-    display: block;
-  }
-  // @include media-breakpoint-down(md) {
-  //   display: block;
-  // }
 }

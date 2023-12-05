@@ -228,6 +228,10 @@ domReady(async () => {
       return phoneNumber;
     }
 
+    const observer = new MutationObserver(function (mutationLists, observer) {
+      // const surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
+      mutationLists.forEach(function (mutation) {})
+    })
     setTimeout(function () {
       let surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
 
