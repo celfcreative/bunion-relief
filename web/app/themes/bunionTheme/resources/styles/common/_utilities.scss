@@ -42,8 +42,12 @@ html {
     margin-top: -15.5rem !important;
   }
 
-  @media (max-width: 423px) {
-    margin-top: -16.7rem !important;
+  @media (max-width: 500px) {
+    margin-top: -17.7rem !important;
+  }
+
+  @media (max-width: 350px) {
+    margin-top: -20.7rem !important;
   }
 }
 

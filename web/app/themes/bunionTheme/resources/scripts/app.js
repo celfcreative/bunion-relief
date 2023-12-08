@@ -164,12 +164,10 @@ domReady(async () => {
     element.value = valueSelect;
   }
 
-  if (radiusCode) {
-    selectRadius('wpsl-radius-dropdown', radiusCode);
-  }
-
-  if (zipCode) {
+  if (zipCode || radiusCode) {
     searchBox.setAttribute('value', zipCode);
+    selectRadius('wpsl-radius-dropdown', radiusCode);
+
     window.onload = function () {
       authorizeClick();
     };
@@ -216,34 +214,6 @@ domReady(async () => {
   });
 
   /**
-   * Auto Format Phone Number
-   */
-  document.addEventListener('DOMContentLoaded', function () {
-    function formatPhoneNumber(phoneNumber) {
-      phoneNumber = phoneNumber.replace(/\D/g, '');
-
-      if (phoneNumber.length === 10) {
-        phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-      }
-      return phoneNumber;
-    }
-
-    const observer = new MutationObserver(function (mutationLists, observer) {
-      // const surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
-      mutationLists.forEach(function (mutation) {})
-    })
-    setTimeout(function () {
-      let surgeonPhoneElements = document.querySelectorAll('.surgeon-phone');
-
-      surgeonPhoneElements.forEach(function (element) {
-        let phoneNumber = element.textContent.trim();
-        phoneNumber = formatPhoneNumber(phoneNumber);
-        element.textContent = phoneNumber;
-      });
-    }, 500);
-  });
-
-  /**
    * ACF Form Select Placeholder
    */
   document.addEventListener('DOMContentLoaded', function () {
@@ -259,64 +229,17 @@ domReady(async () => {
           'What system do you want to learn more about?';
         contactPlaceholderElement.classList.add('text-secondary');
         contactPlaceholderElement.textContent = contactPlaceholderText;
-        console.log(contactPlaceholderText);
       }
     }, 100);
 
     setTimeout(function () {
       clearInterval(waitForElement);
-      console.error(
-        'Element with class .select2-selection__rendered not found',
-      );
     }, 5000);
-  });
-
-  /**
-   * Custom Search Form with Map
-   */
-  document.addEventListener('DOMContentLoaded', function () {
-    const formSearch = document.querySelector('#search_form_location_radius');
-
-    if (formSearch) {
-      const selectRadiusDiv = formSearch.querySelector('#select-radius');
-
-      if (selectRadiusDiv) {
-        const inputRadius = selectRadiusDiv.getElementsByClassName('af-input');
-
-        if (inputRadius.length > 0) {
-          const dropdown = inputRadius[0].querySelector('select');
-
-          if (dropdown) {
-            formSearch.addEventListener('submit', function (event) {
-              event.preventDefault();
-
-              const selectedRadius = dropdown.value;
-              console.log('selected radius:', selectedRadius);
-
-              const currentPageURL = window.location.href;
-              console.log('current page url:', currentPageURL);
-
-              const url = new URL(currentPageURL);
-
-              url.searchParams.set('radius', selectedRadius);
-              console.log('updated url:', url.toString());
-
-              window.location.href = url.toString();
-            });
-          } else {
-            console.log('Dropdown not found inside #select-radius');
-          }
-        }
-      } else {
-        console.log('Element with ID #select-radius not found');
-      }
-    } else {
-      console.log('Form #search_form_location_radius not found');
-    }
   });
 });
 
 loadMore();
+// constantContant();
 
 document.addEventListener('DOMContentLoaded', function () {
   const searchFormContainer = document.querySelector('#searchform_secondary');
