@@ -54,7 +54,7 @@ if (!function_exists('\Roots\bootloader')) {
 |
 */
 
-collect(['setup', 'filters', 'image'])
+collect(['setup', 'filters', 'image', 'api'])
     ->each(function ($file) {
         if (!locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
@@ -96,9 +96,31 @@ add_filter('af/form/success_message/key=form_resource_download', 'change_success
 
 // Add CORS headers in functions.php or a custom plugin
 // Remove once done
-function add_cors_headers() {
+function add_cors_headers()
+{
     header("Access-Control-Allow-Origin: *"); // Replace * with specific origin if needed
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type");
 }
 add_action('init', 'add_cors_headers');
+
+function refreshToken_deactivate()
+{
+    wp_clear_scheduled_hook('refreshToken');
+}
+
+
+
+// register_activation_hook( __FILE__, 'wpshout_plugin_activation' );
+
+// function wpshout_plugin_activation() {
+//     if ( ! wp_next_scheduled( 'wpshout_do_thing' ) ) {
+//         wp_schedule_event( time(), 'everyminute', 'wpshout_do_thing' );
+//     }
+// }
+
+// register_deactivation_hook( __FILE__, 'wpshout_plugin_deactivation' );
+
+// function wpshout_plugin_deactivation() {
+//     wp_clear_scheduled_hook( 'wpshout_do_thing' );
+// }

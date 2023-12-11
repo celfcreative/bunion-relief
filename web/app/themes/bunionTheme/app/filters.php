@@ -309,8 +309,29 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
     }
 }, 10, 3);
 
+
+// /**
+//  * Get Authorization URL
+//  */
+// /**
+//  * @param $redirectURI - URL Encoded Redirect URI
+//  * @param $clientId - API Key
+//  * @param $scope - URL encoded, plus sign delimited list of scopes that your application requires. The 'offline_access' scope needed to request a refresh token is added by default.
+//  * @param $state - Arbitrary string value(s) to verify response and preserve application state
+//  * @return string - Full Authorization URL
+//  */
+
+// function getAuthorizationURL($clientId, $redirectURI, $scope, $state)
+// {
+//     // Create authorization URL
+//     $baseURL = "https://authz.constantcontact.com/oauth2/default/v1/authorize";
+//     $authURL = $baseURL . "?client_id=" . $clientId . "&scope=" . $scope . "+offline_access&response_type=code&state=" . $state . "&redirect_uri=" . $redirectURI;
+
+//     return $authURL;
+// }
+
 /**
- * get Access Token
+ * Get Access Token
  */
 function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
 {
@@ -343,4 +364,10 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
     return $result;
 }
 // API Key > Secret Key > Authorization Code > Token
-// echo getAccessToken('https://localhost', '338566b6-fd20-4178-97f8-c5247baca73a', 'l_DiByiWMgsJ6sNJzufnWg', 'i_V8fLUmHFfjj81sCQFeaetygTnQkAO7N8hkaiwf3uA&state=235o250eddsdff');
+// echo getAccessToken('https://localhost', '338566b6-fd20-4178-97f8-c5247baca73a', 'l_DiByiWMgsJ6sNJzufnWg', '6cOLFAEX0ub3ZzgC71_GKCATyrvLXnihQORjgqHwBZ4&state=235o250eddsdff');
+
+// $constantToken = get_field('constant_contact_token', 'option');
+// dump($constantToken);
+
+// Schedule an event to update the field after 5 minutes
+

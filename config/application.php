@@ -110,6 +110,7 @@ Config::define('NONCE_SALT', env('NONCE_SALT'));
  * Custom Settings
  */
 Config::define('CONSTANT_CONTACT_TOKEN', env('CONSTANT_CONTACT_TOKEN'));
+Config::define('CONSTANT_REFRESH_TOKEN', env('CONSTANT_REFRESH_TOKEN'));
 Config::define('AUTOMATIC_UPDATER_DISABLED', true);
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 
