@@ -64,8 +64,8 @@
                         @endforeach
                     @endif
                     @if ($currentPage == $healthPage)
-                        <a href="{{ get_field('provider_button_link', 'option') }}"
-                            class="btn footer__button bg-white text-capitalize me-0 me-md-2 mb-3 mb-lg-0 ms-md-0 fs-8">{{ get_field('provider_button', 'option') }}</a>
+                        {{-- <a href="{{ get_field('provider_button_link', 'option') }}"
+                            class="btn footer__button bg-white text-capitalize me-0 me-md-2 mb-3 mb-lg-0 ms-md-0 fs-8">{{ get_field('provider_button', 'option') }}</a> --}}
                     @endif
                     @if ($productPage)
                         <a href="{{ get_field('provider_button_link', 'option') }}"

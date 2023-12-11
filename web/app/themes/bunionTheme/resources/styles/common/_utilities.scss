@@ -28,7 +28,7 @@ html {
 }
 
 .minus-top-margin-lg {
-  margin-top: -15rem !important;
+  margin-top: -16rem !important;
 
   @include media-breakpoint-down(xxl) {
     margin-top: -16.5rem !important;
@@ -43,11 +43,11 @@ html {
   }
 
   @media (max-width: 500px) {
-    margin-top: -17.7rem !important;
+    margin-top: -16.7rem !important;
   }
 
-  @media (max-width: 350px) {
-    margin-top: -20.7rem !important;
+  @media (max-width: 400px) {
+    margin-top: -17.7rem !important;
   }
 }
 
