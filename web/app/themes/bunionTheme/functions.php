@@ -54,7 +54,7 @@ if (!function_exists('\Roots\bootloader')) {
 |
 */
 
-collect(['setup', 'filters', 'image', 'api'])
+collect(['setup', 'filters', 'image', 'api', 'constant'])
     ->each(function ($file) {
         if (!locate_template($file = "app/{$file}.php", true, true)) {
             wp_die(
@@ -84,9 +84,9 @@ function change_success_message($success_message, $form, $args)
     if ($downloadFileUrl) {
         return '
         <div class="px-3">
-          <h4>Thank you for completing the form</h4>
-          <p>Download <strong>"' . $fileTitle . '"</strong> using the link below.</p>
-          <a class="btn btn-primary file-download-button" href="' . $downloadFileUrl . '">Download</a>
+            <h4>Thank you for completing the form</h4>
+            <p>Download <strong>"' . $fileTitle . '"</strong> using the link below.</p>
+            <a class="btn btn-primary file-download-button" href="' . $downloadFileUrl . '">Download</a>
         </div>';
     } else {
         return 'Sorry, no file has been found';

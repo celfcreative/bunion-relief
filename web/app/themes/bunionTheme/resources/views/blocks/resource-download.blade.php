@@ -24,6 +24,7 @@
                                 'ajax' => true, 
                                 'values' => [
                                     'form_resource_download' => $files->ID,
+                                    'resource_name' => $files->post_title,
                                     'submit_text' => 'Download',
                                     ]
                                     ]))
