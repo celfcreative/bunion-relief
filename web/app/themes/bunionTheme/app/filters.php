@@ -229,4 +229,38 @@ function load_more_posts()
 add_action('wp_ajax_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts');
 add_action('wp_ajax_load_more_posts', __NAMESPACE__ . '\\load_more_posts');
 
+/**
+ * Populate UTM Data to Hidden Field from the Cookie
+ */
+add_action('af/form/entry_created/key=form_contact_form', function ($entry_id, $form) {
 
+    if (isset($_COOKIE['utm_data'])) {
+        $utm_data = $_COOKIE['utm_data'];
+        $utmArr = explode(' ', $utm_data);
+        update_field('utm_source', $utmArr[0], $entry_id);
+        update_field('utm_medium', $utmArr[1], $entry_id);
+        update_field('utm_campaign', $utmArr[2], $entry_id);
+    }
+}, 10, 3);
+
+add_action('af/form/entry_created/key=form_get_in_touch', function ($entry_id, $form) {
+
+    if (isset($_COOKIE['utm_data'])) {
+        $utm_data = $_COOKIE['utm_data'];
+        $utmArr = explode(' ', $utm_data);
+        update_field('utm_source', $utmArr[0], $entry_id);
+        update_field('utm_medium', $utmArr[1], $entry_id);
+        update_field('utm_campaign', $utmArr[2], $entry_id);
+    }
+}, 10, 3);
+
+add_action('af/form/entry_created/key=form_resource_download', function ($entry_id, $form) {
+
+    if (isset($_COOKIE['utm_data'])) {
+        $utm_data = $_COOKIE['utm_data'];
+        $utmArr = explode(' ', $utm_data);
+        update_field('utm_source', $utmArr[0], $entry_id);
+        update_field('utm_medium', $utmArr[1], $entry_id);
+        update_field('utm_campaign', $utmArr[2], $entry_id);
+    }
+}, 10, 3);

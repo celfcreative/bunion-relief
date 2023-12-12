@@ -116,7 +116,11 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
       [
         'custom_field_id' => 'a6bf754c-98db-11ee-a0b9-fa163e78e228',
         'value' => $termAgreement,
-      ]
+      ],
+      [
+        'custom_field_id' => '29cfcce4-9903-11ee-99cf-fa163e75fbca',
+        'value' => $doctorName,
+      ],
     ],
     'create_source' => 'Contact',
     'list_memberships' => [

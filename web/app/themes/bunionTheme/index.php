@@ -1,6 +1,20 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 
+<?php
+
+if (isset($_GET['utm_source']) && isset($_GET['utm_medium']) && isset($_GET['utm_campaign'])) {
+  $utmData = [
+    'utm_source' => $_GET['utm_source'],
+    'utm_medium' => $_GET['utm_medium'],
+    'utm_campaign' => $_GET['utm_campaign'],
+  ];
+
+  $utmDataJoined = implode(" ", $utmData);
+  setcookie('utm_data', $utmDataJoined, time() + 86400, '/');
+}
+?>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
