@@ -6,3 +6,5 @@
 .budfiles
 npm-debug.log
 yarn-error.log
+.sql
+.tar.gz
