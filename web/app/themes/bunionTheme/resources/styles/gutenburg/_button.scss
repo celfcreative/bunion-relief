@@ -1,27 +1,32 @@
+// // Button styles
 .wp-block-button {
   .wp-block-button__link {
     @extend .btn, .shadow;
+
+    &:hover {
+      background-color: $primary;
+    }
+
+    &.is-style-secondary {
+      &:hover {
+        background-color: $secondary;
+      }
+    }
+
+    &.is-style-outline {
+      padding: $spacer * 0.4 $spacer * 1.4;
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
   }
-}
 
-.is-style-primary .wp-block-button__link {
-  &:hover {
-    background-color: #3f2a68 !important;
-  }
-}
+  &.is-style-outline > .wp-block-button__link {
+    padding: $spacer * 0.4 $spacer * 1.4;
 
-.is-style-secondary .wp-block-button__link {
-  &:hover {
-    background-color: $gray-300 !important;
-  }
-}
-
-.wp-block-button .wp-block-button__link.is-style-outline,
-.wp-block-button.is-style-outline > .wp-block-button__link {
-  @extend .btn;
-  padding: $spacer * 0.4 $spacer * 1.4;
-
-  &:hover {
-    background-color: #3f2a68 !important;
+    &:hover {
+      background-color: $primary;
+    }
   }
 }

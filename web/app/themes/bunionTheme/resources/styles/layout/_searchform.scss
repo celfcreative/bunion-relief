@@ -211,14 +211,6 @@
           @include media-breakpoint-down(sm) {
             transform: translate(-14%, -138%);
           }
-          // @include media-breakpoint-between(md, lg) {
-          //   transform: translate(-114%, -144%);
-          // }
-
-          // @media (max-width: 767.98px) {
-          //   right: 0%;
-          //   transform: translate(-13%, -133%);
-          // }
         }
       }
     }
