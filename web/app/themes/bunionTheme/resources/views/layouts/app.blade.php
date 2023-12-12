@@ -7,8 +7,10 @@
     'classes' => 'invisible overflow-hidden w-100',
     'showNavigation' => false,
 ])
+
 <main id="main" class="main container px-3">
     @yield('content')
 </main>
+
 
 @include('sections.footer')

@@ -255,6 +255,13 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('no <img> tag is found');
     }
   }
+
+  /**
+   * Retrieve Cookie Value
+   */
+  let utmData = document.cookie;
+
+  console.log(utmData);
 });
 
 /**
