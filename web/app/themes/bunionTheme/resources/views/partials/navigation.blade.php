@@ -11,7 +11,7 @@
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                                 {{ $item->label }}
                             </a>
-                            <ul class="my-child-menu nav-item dropdown-menu rounded-0 bg-primary px-4 py-3"
+                            <ul class="my-child-menu nav-item dropdown-menu rounded-0 bg-primary px-4 py-3 border-0"
                                 aria-labelledby="dropdownMenuButton">
                                 @foreach ($item->children as $child)
                                     <li class="my-child-item {{ $child->active ? '' : '' }}">

@@ -5,6 +5,4 @@
 <div class="tab-body">
     <h3>{{ $tabTitle }}</h3>
     <p>{{ $tabDescription }}</p>
-
-    @dump($tabDescription)
 </div>

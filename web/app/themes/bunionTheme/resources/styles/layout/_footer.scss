@@ -4,23 +4,13 @@ footer {
   .footer {
     &__brands {
       .brand-img {
-        @include media-breakpoint-between(sm, xlg) {
-          &:nth-child(1) {
-            object-fit: contain;
-            height: 5rem;
-          }
-          object-fit: contain;
-          height: 3rem;
-        }
-
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(lg) {
           &:nth-child(1) {
             object-fit: contain;
             height: 4rem;
           }
-
           object-fit: contain;
-          height: 2rem;
+          height: 2.5rem;
         }
       }
     }
@@ -32,6 +22,14 @@ footer {
 
     &__list {
       line-height: 1.7;
+    }
+
+    &__buttons {
+      margin-top: $spacer - 3.9;
+
+      @include media-breakpoint-down(md) {
+        margin-top: 0;
+      } 
     }
 
     &__button {

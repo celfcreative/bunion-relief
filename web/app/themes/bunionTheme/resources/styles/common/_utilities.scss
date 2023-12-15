@@ -83,7 +83,6 @@ html {
 // Usage
 .header-container {
   @include make-container();
-
   width: 1366px;
 }
 

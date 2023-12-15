@@ -1,30 +1,26 @@
+@use 'sass:color';
+
 // // Button styles
 .wp-block-button {
   .wp-block-button__link {
     @extend .btn, .shadow;
 
+    padding: $spacer * 0.4 $spacer * 1.4;
+  }
+  
+  &.is-style-primary > .wp-block-button__link {
     &:hover {
-      background-color: $primary;
+      background-color: darken($color: $primary, $amount: 5%) !important;
     }
+  }
 
-    &.is-style-secondary {
-      &:hover {
-        background-color: $secondary;
-      }
-    }
-
-    &.is-style-outline {
-      padding: $spacer * 0.4 $spacer * 1.4;
-
-      &:hover {
-        background-color: $primary;
-      }
+  &.is-style-secondary > .wp-block-button__link {
+    &:hover {
+      background-color: darken($color: $white, $amount: 20%) !important;
     }
   }
 
   &.is-style-outline > .wp-block-button__link {
-    padding: $spacer * 0.4 $spacer * 1.4;
-
     &:hover {
       background-color: $primary;
     }
