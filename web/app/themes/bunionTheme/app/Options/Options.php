@@ -67,6 +67,12 @@ class Options extends Field
         ->addText('form_description', ['label'=>'Form Description']);
 
         $options
+        ->addTab('site_tracking', ['label'=>'Tracking'])
+        ->addTextarea('header_tracker', ['label'=>'Header'])
+        ->addTextarea('body_tracker', ['label'=>'Body'])
+        ->addTextarea('footer_tracker', ['label'=>'Footer']);
+
+        $options
         ->addTab('site_api', ['label'=>'Constant Contact API'])
         ->addTextArea('constant_contact_token', ['label'=>'Constant Contact API Token']);
 

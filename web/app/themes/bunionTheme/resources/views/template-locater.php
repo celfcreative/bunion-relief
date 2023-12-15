@@ -24,7 +24,7 @@ $autoload_class = (!$wpsl_settings['autoload']) ? 'class="wpsl-not-loaded"' : ''
       <div class="" id="wpsl-wrap">
         <div class="" id="wpsl-radius">
           <label for="wpsl-radius-dropdown"><?php echo esc_html($wpsl->i18n->get_translation('radius_label', __('Search radius', 'wpsl'))) ?> </label>
-          <select id="wpsl-radius-dropdown" class="wpsl-dropdown" name="wpsl-radius"> <?php echo $this->get_dropdown_list('search_radius') ?> </select>
+          <select id="wpsl-radius-dropdown" class="wpsl-dropdown" name="wpsl-radius"><?php echo $this->get_dropdown_list('search_radius') ?> </select>
         </div>
       </div>
     </div>

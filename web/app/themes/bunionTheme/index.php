@@ -27,6 +27,91 @@ if (isset($_GET['utm_source']) && isset($_GET['utm_medium']) && isset($_GET['utm
 </head>
 
 <body <?php body_class(); ?>>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-72TXGS1KMM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-72TXGS1KMM');
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      document.body.addEventListener('click', function(event) {
+
+        if (event.target.tagName === 'A') {
+          const link = event.target.getAttribute('href');
+          const url = new URL(link);
+
+          let utmSource = '';
+          let utmMedium = '';
+          let utmCampaign = '';
+
+          // Check if UTM parameters are stored in cookies
+          const utmCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('utm_data='));
+
+          if (utmCookie) {
+            const [cookie, cookieValue] = utmCookie.split('=');
+            const decodedString = decodeURIComponent(cookieValue);
+
+            const jsonData = {
+              'message': decodedString
+            };
+            const jsonString = JSON.stringify(jsonData);
+
+            utmSource = utmData.utm_source;
+            utmMedium = utmData.utm_medium;
+            utmCampaign = utmData.utm_campaign;
+          } else {
+            utmSource = url.searchParams.get('utm_source');
+            utmMedium = url.searchParams.get('utm_medium');
+            utmCampaign = url.searchParams.get('utm_campaign');
+          }
+
+          if (!event.target.classList.contains('doctor-profile') && !event.target.classList.contains('surgeon-phone')) {
+            gtag('event', 'page_click', {
+              'event_category': 'Page Click',
+              'event_label': 'Page Clicked',
+              'link_href': link,
+              'utm_source': utmSource,
+              'utm_medium': utmMedium,
+              'utm_campaign': utmCampaign
+            });
+          }
+        }
+
+        if (event.target.classList.contains('doctor-profile')) {
+          const doctorName = event.target.getAttribute('data-name');
+          console.log('View Profile button clicked for Doctor:', doctorName);
+
+          gtag('event', 'view_profile_click', {
+            'event_category': 'Profile Button',
+            'event_label': 'View Profile Clicked',
+            'doctor_name': doctorName
+          });
+        }
+
+        if (event.target.classList.contains('surgeon-phone')) {
+          const doctorPhoneName = event.target.getAttribute('data-dr-phone')
+          const doctorPhone = event.target.getAttribute('href');
+
+          gtag('event', 'call_profile_click', {
+            'event_category': 'Call Button',
+            'event_label': 'Call Profile Clicked',
+            'doctor_number': doctorPhone,
+            'doctor_name': doctorPhoneName,
+          });
+        }
+      });
+    });
+  </script>
+
   <?php wp_body_open(); ?>
   <?php do_action('get_header'); ?>
 

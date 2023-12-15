@@ -124,7 +124,7 @@
   }
 }
 
-// if has class style-background
+// Background Primary
 #searchform_secondary {
   #form_search_location {
     background-color: $primary !important;
@@ -134,22 +134,26 @@
       .af-submit {
         .acf-button {
           height: 39px;
-          transform: translate(-132%, -133%);
+          transform: translate(-131%, -133%);
 
           @include media-breakpoint-down(xxl) {
-            transform: translate(-112%, -133%);
+            transform: translate(-110%, -133%);
           }
 
           @include media-breakpoint-down(xl) {
-            transform: translate(-107%, -133%);
+            transform: translate(-106%, -133%);
+          }
+
+          @include media-breakpoint-down(lg) {
+            transform: translate(-104%, -133%);
           }
 
           @include media-breakpoint-down(md) {
-            transform: translate(-129%, -133%);
+            transform: translate(-127%, -133%);
           }
 
           @include media-breakpoint-down(sm) {
-            transform: translate(-14%, -133%);
+            transform: translate(-13%, -133%);
           }
         }
       }
@@ -194,10 +198,14 @@
       .af-submit {
         .acf-button {
           height: 37px;
-          transform: translate(-133%, -138%);
+          transform: translate(-134%, -138%);
 
           @include media-breakpoint-down(xxl) {
-            transform: translate(-112%, -138%);
+            transform: translate(-114%, -138%);
+          }
+
+          @include media-breakpoint-down(xl) {
+            transform: translate(-109%, -138%);
           }
 
           @include media-breakpoint-down(xl) {
@@ -205,7 +213,7 @@
           }
 
           @include media-breakpoint-down(md) {
-            transform: translate(-131%, -138%);
+            transform: translate(-132%, -138%);
           }
 
           @include media-breakpoint-down(sm) {

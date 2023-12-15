@@ -123,9 +123,9 @@ add_filter('wpsl_listing_template', function () {
                 </div>
 
                 <div class ='locator-buttons d-flex gap-3 mt-2 flex-column flex-xl-row'>
-                <a href='<%= permalink %>?distance=<%= distance %>$wpsl_settings[distance_unit]' class='btn btn-light border-dark-subtle text-capitalize shadow'>view profile</a>
+                <a href='<%= permalink %>?distance=<%= distance %>$wpsl_settings[distance_unit]' class='btn btn-light border-dark-subtle text-capitalize shadow doctor-profile' data-name=' <%= store %> ' >view profile</a>
                 <% if (phone) { %>
-                    <a href='tel:<%= phone %>' class='btn btn-primary shadow surgeon-phone'><%= phone %></a>
+                    <a href='tel:<%= phone %>' class='btn btn-primary shadow surgeon-phone' data-dr-phone='<%= store %>' ><%= phone %></a>
                 <% } %>                  
                 </div>
             </div>

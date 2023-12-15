@@ -33,7 +33,7 @@ class TabInfo extends Field
                 'placeholder' => '',
                 'maxlength' => '',
                 'rows' => '',
-                'new_lines' => 'br', // Possible values are 'wpautop', 'br', or ''.
+                'new_lines' => 'wpautop', // Possible values are 'wpautop', 'br', or ''.
             ])
             ->addTrueFalse('button_true_false', [
                 'label' => 'Add Button',

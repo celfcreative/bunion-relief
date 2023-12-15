@@ -140,7 +140,7 @@ domReady(async () => {
   Symptom checker progress bar
   */
   for (let i = 0; i < changeIndex.length; i++) {
-    let qPercent = Math.round(((i + 1) / changeIndex.length) * 100) + '%';
+    let qPercent = Math.round((i / (changeIndex.length - 1)) * 100) + '%';
 
     changeIndex[i].innerHTML = qPercent;
 
@@ -239,7 +239,6 @@ domReady(async () => {
 });
 
 loadMore();
-// constantContant();
 
 document.addEventListener('DOMContentLoaded', function () {
   const searchFormContainer = document.querySelector('#searchform_secondary');
@@ -255,13 +254,6 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('no <img> tag is found');
     }
   }
-
-  /**
-   * Retrieve Cookie Value
-   */
-  let utmData = document.cookie;
-
-  console.log(utmData);
 });
 
 /**

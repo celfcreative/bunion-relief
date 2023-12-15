@@ -1,5 +1,5 @@
 <div class="footer container">
-    <div class="row align-items-center gap-3 gap-md-5">
+    <div class="row gap-3 gap-md-5">
         <div class="footer__brands col-lg-2 mb-2 mb-lg-0 px-0 pt-4 pt-md-0">
             <div class="d-flex flex-column gap-3">
                 <img src="@asset('images/br-logo-white.png')" alt="bunion relief white logo" class="brand-img w-100 ">
@@ -52,7 +52,7 @@
                                 </li>
                             @endif
                         </ul>
-                        <a href="{{ home_url('/citation') }}" class="text-white">Citation</a>
+                        <a href="{{ home_url('/citation') }}" class="text-white">Citations</a>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
                     @if ($getRepeaterButtons)
                         @foreach ($getRepeaterButtons as $button)
                             <a href="{{ $button['footer_button_link'] }}"
-                                class="btn footer__button bg-white text-capitalize me-0 me-md-2 mb-3 mb-lg-0 ms-md-0 fs-8">{!! $button['footer_button'] !!}</a>
+                                class="btn footer__button bg-white me-0 me-md-2 mb-3 mb-lg-0 ms-md-0 fs-8 fw-light">{!! $button['footer_button'] !!}</a>
                         @endforeach
                     @endif
                     @if ($currentPage == $healthPage)
