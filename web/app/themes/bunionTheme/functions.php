@@ -75,6 +75,22 @@ $size_names = apply_filters(
     )
 );
 
+function handle_utm_campaign()
+{
+    if (isset($_GET['utm_source']) && isset($_GET['utm_medium']) && isset($_GET['utm_campaign'])) {
+        $utmData = [
+            'utm_source' => $_GET['utm_source'],
+            'utm_medium' => $_GET['utm_medium'],
+            'utm_campaign' => $_GET['utm_campaign'],
+        ];
+
+        $utmDataObj = json_encode($utmData);
+
+        setcookie('utm_data', $utmDataObj, time() + 86400, '/');
+    }
+}
+add_action('init', 'handle_utm_campaign');
+
 function change_success_message($success_message, $form, $args)
 {
     $id = af_get_field('form_resource_download');
@@ -108,19 +124,3 @@ function refreshToken_deactivate()
 {
     wp_clear_scheduled_hook('refreshToken');
 }
-
-
-
-// register_activation_hook( __FILE__, 'wpshout_plugin_activation' );
-
-// function wpshout_plugin_activation() {
-//     if ( ! wp_next_scheduled( 'wpshout_do_thing' ) ) {
-//         wp_schedule_event( time(), 'everyminute', 'wpshout_do_thing' );
-//     }
-// }
-
-// register_deactivation_hook( __FILE__, 'wpshout_plugin_deactivation' );
-
-// function wpshout_plugin_deactivation() {
-//     wp_clear_scheduled_hook( 'wpshout_do_thing' );
-// }
