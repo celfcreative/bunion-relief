@@ -230,7 +230,7 @@ add_action('wp_ajax_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts'
 add_action('wp_ajax_load_more_posts', __NAMESPACE__ . '\\load_more_posts');
 
 /**
- * Populate UTM Data to Hidden Field from the Cookie
+ * Populate UTM Data to Hidden Field from the Cookie upon Submission
  */
 add_action('af/form/entry_created/key=form_contact_form', function ($entry_id, $form) {
 
