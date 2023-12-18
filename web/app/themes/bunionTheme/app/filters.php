@@ -236,10 +236,13 @@ add_action('af/form/entry_created/key=form_contact_form', function ($entry_id, $
 
     if (isset($_COOKIE['utm_data'])) {
         $utm_data = $_COOKIE['utm_data'];
-        $utmArr = explode(' ', $utm_data);
-        update_field('utm_source', $utmArr[0], $entry_id);
-        update_field('utm_medium', $utmArr[1], $entry_id);
-        update_field('utm_campaign', $utmArr[2], $entry_id);
+
+        $utm_data_unescaped = stripslashes($utm_data);
+        $decoded_utm = json_decode($utm_data_unescaped);
+
+        update_field('utm_source', $decoded_utm->utm_source, $entry_id);
+        update_field('utm_medium', $decoded_utm->utm_medium, $entry_id);
+        update_field('utm_campaign', $decoded_utm->utm_campaign, $entry_id);
     }
 }, 10, 3);
 
@@ -247,10 +250,13 @@ add_action('af/form/entry_created/key=form_get_in_touch', function ($entry_id, $
 
     if (isset($_COOKIE['utm_data'])) {
         $utm_data = $_COOKIE['utm_data'];
-        $utmArr = explode(' ', $utm_data);
-        update_field('utm_source', $utmArr[0], $entry_id);
-        update_field('utm_medium', $utmArr[1], $entry_id);
-        update_field('utm_campaign', $utmArr[2], $entry_id);
+
+        $utm_data_unescaped = stripslashes($utm_data);
+        $decoded_utm = json_decode($utm_data_unescaped);
+
+        update_field('utm_source', $decoded_utm->utm_source, $entry_id);
+        update_field('utm_medium', $decoded_utm->utm_medium, $entry_id);
+        update_field('utm_campaign', $decoded_utm->utm_campaign, $entry_id);
     }
 }, 10, 3);
 
@@ -258,9 +264,12 @@ add_action('af/form/entry_created/key=form_resource_download', function ($entry_
 
     if (isset($_COOKIE['utm_data'])) {
         $utm_data = $_COOKIE['utm_data'];
-        $utmArr = explode(' ', $utm_data);
-        update_field('utm_source', $utmArr[0], $entry_id);
-        update_field('utm_medium', $utmArr[1], $entry_id);
-        update_field('utm_campaign', $utmArr[2], $entry_id);
+
+        $utm_data_unescaped = stripslashes($utm_data);
+        $decoded_utm = json_decode($utm_data_unescaped);
+
+        update_field('utm_source', $decoded_utm->utm_source, $entry_id);
+        update_field('utm_medium', $decoded_utm->utm_medium, $entry_id);
+        update_field('utm_campaign', $decoded_utm->utm_campaign, $entry_id);
     }
 }, 10, 3);

@@ -209,7 +209,7 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
   ]);
 
   if (is_wp_error($response)) {
-    dump($response);
+    // dump($response);
     error_log('Constant Contact API Request Error: ' . $response->get_error_message());
     wp_send_json_error('Error sending data to Constant Contact.');
   } else {
@@ -217,7 +217,7 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
     if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
       // wp_send_json_success('Data sent to Constant Contact successfully.');
     } else {
-      dump($response_code, $response);
+      // dump($response_code, $response);
       error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
       wp_send_json_error('Unexpected response from Constant Contact.');
     }
