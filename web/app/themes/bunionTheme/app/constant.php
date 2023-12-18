@@ -1,9 +1,34 @@
 <?php
 
+// updateField('utm_source')
+// function updateField($utmData)
+// {
+//   if (isset($_COOKIE['utm_data'])) {
+
+//     $utm_data = $_COOKIE['utm_data'];
+
+//     $utm_data_unescaped = stripslashes($utm_data);
+//     $decoded_utm = json_decode($utm_data_unescaped);
+//   }
+// };
 /**
  * Contact Form -> Constant Contact -> Contact Form contact list
  */
+
+
 add_action('af/form/submission/key=form_contact_form', function ($form, $fields, $args) {
+
+  if (isset($_COOKIE['utm_data'])) {
+    $utm_data = $_COOKIE['utm_data'];
+  
+    $utm_data_unescaped = stripslashes($utm_data);
+    $decoded_utm = json_decode($utm_data_unescaped);
+  
+    update_field('utm_source', $decoded_utm->utm_source);
+    update_field('utm_medium', $decoded_utm->utm_medium);
+    update_field('utm_campaign', $decoded_utm->utm_campaign);
+  }
+
   // Fetch data from the form fields
   $firstName = af_get_field('first_name');
   $lastName = af_get_field('last_name');
@@ -41,6 +66,18 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
         'custom_field_id' => 'a46282f4-95bf-11ee-b1d7-fa163e4dd890',
         'value' => $learnAbout
       ],
+      [
+        'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
+        'value' => $decoded_utm->utm_source
+      ],
+      [
+        'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
+        'value' => $decoded_utm->utm_medium
+      ],
+      [
+        'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
+        'value' => $decoded_utm->utm_campaign
+      ],
     ],
     'create_source' => 'Contact',
     'list_memberships' => [
@@ -50,15 +87,12 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
 
   $api_url = 'https://api.cc.email/v3/contacts';
   // 
-  $api_token = 'eyJraWQiOiJzay1Ed2N2eU9uUm1yc21yVUI5bHNNSXFVcXl4MF8zcFQ4dkhDcG5uZmN3IiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULjJtYmJ1V1A3SVZjY2lzUlAwQmdxZ0R1N1ZPSUFqcGtSZE1YWmRzaHgyQUUub2FyMTRvMG8zbEwxeGNyRnYwaDciLCJpc3MiOiJodHRwczovL2lkZW50aXR5LmNvbnN0YW50Y29udGFjdC5jb20vb2F1dGgyL2F1czFsbTNyeTltRjd4MkphMGg4IiwiYXVkIjoiaHR0cHM6Ly9hcGkuY2MuZW1haWwvdjMiLCJpYXQiOjE3MDIzNzk4NTQsImV4cCI6MTcwMjQ2NjI1NCwiY2lkIjoiMzM4NTY2YjYtZmQyMC00MTc4LTk3ZjgtYzUyNDdiYWNhNzNhIiwidWlkIjoiMDB1MXU3bGhtbnM0STVlMlowaDgiLCJzY3AiOlsib2ZmbGluZV9hY2Nlc3MiLCJjYW1wYWlnbl9kYXRhIiwiY29udGFjdF9kYXRhIl0sImF1dGhfdGltZSI6MTcwMjM3Mzc0NCwic3ViIjoiY29uc3RhbnRjZWxmIiwicGxhdGZvcm1fdXNlcl9pZCI6IjgxNzQ4NDliLTdkNjQtNGJjNS1iMTAzLTQzY2M1YTdkYjRkYiJ9.OzLGvA3q_VHqx9kHdDgTfzSaHlxlWoc-Roo1ojhxAR3orPtN6u_2143BQ7qfHrzJYiJgw3MHpUkxQjlEBgN6j373rHzHCCIRY3ntfnuNBDLgBBmO8Ri5mfDVjZjB9-8NRjFLE12559lozE-bpmHwExXTb_btmyuV5mi2vBvtJM0AK0DgebZdI_7r1YK5XxmIw-kMJ5bsSF28S_ymid4WxSSDLtEjZy5yxJy4qmMjMhzOkO_6wEmtTFmQg4zHs13rB11mrBQ85eJvXn6tjrCB-5ecCYmKtNkPaV47C6s9q2ObA29eeBHTnF5ceZuJ3pm5AZjJOZomrg4pzizD3IKkCQ';
-  // $api_key = CONSTANT_CONTACT_TOKEN;
-  // Refresh Token
-  // ozgd8eZC_S_lGHt1L-EC3TFFVfuRuJvDeTJSNKL4J-U
+  $api_token = CONSTANT_CONTACT_TOKEN;
+  $api_refreshtoken = CONSTANT_REFRESH_TOKEN;
 
   $headers = [
     'Content-Type' => 'application/json',
     'Authorization' => 'Bearer ' . $api_token,
-    // 'Authorization' => 'Bearer ' . $api_key,
   ];
 
   $body = wp_json_encode($constant_contact_data);
@@ -88,6 +122,18 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
  * Get In Touch Form -> Constant Contact -> Get In Touch contact list
  */
 add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields, $args) {
+
+  if (isset($_COOKIE['utm_data'])) {
+    $utm_data = $_COOKIE['utm_data'];
+  
+    $utm_data_unescaped = stripslashes($utm_data);
+    $decoded_utm = json_decode($utm_data_unescaped);
+  
+    update_field('utm_source', $decoded_utm->utm_source);
+    update_field('utm_medium', $decoded_utm->utm_medium);
+    update_field('utm_campaign', $decoded_utm->utm_campaign);
+  }
+
   // Fetch field data
   $firstName = af_get_field('first_name');
   $lastName = af_get_field('last_name');
@@ -120,6 +166,18 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
       [
         'custom_field_id' => '29cfcce4-9903-11ee-99cf-fa163e75fbca',
         'value' => $doctorName,
+      ],
+      [
+        'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
+        'value' => $decoded_utm->utm_source
+      ],
+      [
+        'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
+        'value' => $decoded_utm->utm_medium
+      ],
+      [
+        'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
+        'value' => $decoded_utm->utm_campaign
       ],
     ],
     'create_source' => 'Contact',
@@ -163,6 +221,18 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
  * Resource Download Form -> Constant Contact -> Resource Download contact list
  */
 add_action('af/form/submission/key=form_resource_download', function ($form, $fields, $args) {
+
+  if (isset($_COOKIE['utm_data'])) {
+    $utm_data = $_COOKIE['utm_data'];
+  
+    $utm_data_unescaped = stripslashes($utm_data);
+    $decoded_utm = json_decode($utm_data_unescaped);
+  
+    update_field('utm_source', $decoded_utm->utm_source);
+    update_field('utm_medium', $decoded_utm->utm_medium);
+    update_field('utm_campaign', $decoded_utm->utm_campaign);
+  }
+
   // Fetch field data
   $firstName = af_get_field('first_name');
   $lastName = af_get_field('last_name');
@@ -185,6 +255,18 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
       [
         'custom_field_id' => 'e243b548-98e4-11ee-83ab-fa163e75fbca',
         'value' => $resourceDownload,
+      ],
+      [
+        'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
+        'value' => $decoded_utm->utm_source
+      ],
+      [
+        'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
+        'value' => $decoded_utm->utm_medium
+      ],
+      [
+        'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
+        'value' => $decoded_utm->utm_campaign
       ],
     ],
     'create_source' => 'Contact',
@@ -209,7 +291,7 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
   ]);
 
   if (is_wp_error($response)) {
-    // dump($response);
+    dump($response);
     error_log('Constant Contact API Request Error: ' . $response->get_error_message());
     wp_send_json_error('Error sending data to Constant Contact.');
   } else {
@@ -217,7 +299,7 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
     if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
       // wp_send_json_success('Data sent to Constant Contact successfully.');
     } else {
-      // dump($response_code, $response);
+      dump($response_code, $response);
       error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
       wp_send_json_error('Unexpected response from Constant Contact.');
     }
@@ -255,5 +337,5 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
   curl_close($ch);
   return $result;
 }
-// API Key > Secret Key > Authorization Code - To get Token
-// echo getAccessToken('https://localhost', '338566b6-fd20-4178-97f8-c5247baca73a', 'l_DiByiWMgsJ6sNJzufnWg', 'RvBF-aXdrCkV2j8A1GNWChk2P9zBpH1qJKKjTX5Wp1Y&state=235o250eddsdff');
+// API Key > Secret Key > Authorization Code - To get Tokens
+// echo getAccessToken('https://localhost', '338566b6-fd20-4178-97f8-c5247baca73a', 'l_DiByiWMgsJ6sNJzufnWg', 'J1t7IhpH3uz-iAJlJdOG1EIkMCRN_jM_0RyCtYfGJKA&state=235o250eddsdff');
