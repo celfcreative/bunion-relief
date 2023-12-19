@@ -2,8 +2,7 @@
 global $wp_query;
 
 ?>
-
-<div class="blog-box">
+<div class="blog-box d-flex flex-column align-items-center gap-4 gap-md-5">
     <div class="blogs row gap-5" data-page="<?= get_query_var('paged') ? get_query_var('paged') : 1 ?>"
         data-max="<?= $wp_query->max_num_pages ?>">
         @if ($blogs->have_posts())

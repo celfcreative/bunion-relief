@@ -1,4 +1,4 @@
-<div class="footer container">
+<div class="footer container nav-max-width">
     <div class="row gap-3 gap-md-5">
         <div class="footer__brands col-lg-2 mb-2 mb-lg-0 px-0 pt-4 pt-md-0">
             <div class="d-flex flex-column gap-3">
@@ -10,7 +10,7 @@
         @if ($footer)
             <div class="footer__content col p-0">
                 <div
-                    class="footer__info row mb-3 ms-lg-6 gap-3 gap-md-2 flex-column flex-md-row justify-content-between">
+                    class="footer__info row mb-3 ms-lg-4 gap-3 gap-md-0 flex-column flex-md-row justify-content-between">
                     @foreach ($footer as $item)
                         <div class="footer__list col-auto">
                             <h3 class="text-capitalize text-white fs-5">{{ $item->label }}</h3>

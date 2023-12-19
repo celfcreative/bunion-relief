@@ -1,5 +1,5 @@
 <!-- Tab panes -->
-<div class="tab ">
+<div class="tab">
     <div class="row justify-content-center align-items-start w-100 m-0">
         @if ($tabImage)
             <div class="tab-img-box col-lg-4 col-md-6 p-3 px-4 ps-2">
