@@ -1,6 +1,6 @@
 <div class="footer container nav-max-width">
     <div class="row gap-3 gap-md-5">
-        <div class="footer__brands col-lg-2 mb-2 mb-lg-0 px-0 pt-4 pt-md-0">
+        <div class="footer__brands col-lg-2 mb-2 mb-lg-0 px-0 pt-5 pt-md-0">
             <div class="d-flex flex-column gap-3">
                 <img src="@asset('images/br-logo-white.png')" alt="bunion relief white logo" class="brand-img w-100 ">
                 <img src="@asset('images/br-phantom-logo-white.png')" alt="bunion relief mis logo" class="brand-img w-100">

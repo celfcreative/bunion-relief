@@ -264,7 +264,7 @@
 }
 
 #customSearch {
-  @extend .shadow, .rounded, .px-5, .pb-3;
+  @extend .shadow, .rounded, .px-sm-4, .px-md-5, .pb-3;
 
   .af-form {
     @extend .w-100, .shadow-none, .px-0;
