@@ -1,29 +1,17 @@
 <?php
 
-// updateField('utm_source')
-// function updateField($utmData)
-// {
-//   if (isset($_COOKIE['utm_data'])) {
-
-//     $utm_data = $_COOKIE['utm_data'];
-
-//     $utm_data_unescaped = stripslashes($utm_data);
-//     $decoded_utm = json_decode($utm_data_unescaped);
-//   }
-// };
 /**
  * Contact Form -> Constant Contact -> Contact Form contact list
  */
-
 
 add_action('af/form/submission/key=form_contact_form', function ($form, $fields, $args) {
 
   if (isset($_COOKIE['utm_data'])) {
     $utm_data = $_COOKIE['utm_data'];
-  
+
     $utm_data_unescaped = stripslashes($utm_data);
     $decoded_utm = json_decode($utm_data_unescaped);
-  
+
     update_field('utm_source', $decoded_utm->utm_source);
     update_field('utm_medium', $decoded_utm->utm_medium);
     update_field('utm_campaign', $decoded_utm->utm_campaign);
@@ -68,15 +56,15 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
       ],
       [
         'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
-        'value' => $decoded_utm->utm_source
+        'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
       ],
       [
         'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
-        'value' => $decoded_utm->utm_medium
+        'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
       ],
       [
         'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
-        'value' => $decoded_utm->utm_campaign
+        'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
       ],
     ],
     'create_source' => 'Contact',
@@ -125,10 +113,10 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
 
   if (isset($_COOKIE['utm_data'])) {
     $utm_data = $_COOKIE['utm_data'];
-  
+
     $utm_data_unescaped = stripslashes($utm_data);
     $decoded_utm = json_decode($utm_data_unescaped);
-  
+
     update_field('utm_source', $decoded_utm->utm_source);
     update_field('utm_medium', $decoded_utm->utm_medium);
     update_field('utm_campaign', $decoded_utm->utm_campaign);
@@ -169,15 +157,15 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
       ],
       [
         'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
-        'value' => $decoded_utm->utm_source
+        'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
       ],
       [
         'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
-        'value' => $decoded_utm->utm_medium
+        'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
       ],
       [
         'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
-        'value' => $decoded_utm->utm_campaign
+        'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
       ],
     ],
     'create_source' => 'Contact',
@@ -224,10 +212,10 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
 
   if (isset($_COOKIE['utm_data'])) {
     $utm_data = $_COOKIE['utm_data'];
-  
+
     $utm_data_unescaped = stripslashes($utm_data);
     $decoded_utm = json_decode($utm_data_unescaped);
-  
+
     update_field('utm_source', $decoded_utm->utm_source);
     update_field('utm_medium', $decoded_utm->utm_medium);
     update_field('utm_campaign', $decoded_utm->utm_campaign);
@@ -258,15 +246,15 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
       ],
       [
         'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
-        'value' => $decoded_utm->utm_source
+        'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
       ],
       [
         'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
-        'value' => $decoded_utm->utm_medium
+        'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
       ],
       [
         'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
-        'value' => $decoded_utm->utm_campaign
+        'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
       ],
     ],
     'create_source' => 'Contact',

@@ -1,6 +1,4 @@
 .blog-box {
-  @extend .d-flex, .flex-column, .align-items-center, .gap-2, .gap-md-5;
-
   .blogs {
     row-gap: $spacer * 2;
     padding-inline: $spacer * 0.75;

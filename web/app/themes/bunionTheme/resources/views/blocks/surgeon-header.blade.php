@@ -32,7 +32,9 @@
 
             <div class="modal-body pt-0">
                 @if (!$block->preview)
-                    @php(advanced_form('form_get_in_touch'))
+                    @php(advanced_form('form_get_in_touch', [
+                        'redirect' => '/thank-you',
+                    ]))
                 @endif
             </div>
         </div>
