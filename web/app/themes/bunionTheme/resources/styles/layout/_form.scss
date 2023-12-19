@@ -195,9 +195,6 @@
 
       .af-next-button {
         @extend .btn, .btn-primary, .fw-medium;
-
-        &:hover {
-        }
       }
     }
 
@@ -279,9 +276,6 @@
   .acf-form {
     .acf-fields {
       @extend .border-0;
-
-      .acf-label {
-      }
 
       .acf-field-text,
       .acf-field-email,
