@@ -34,6 +34,7 @@
                 @if (!$block->preview)
                     @php(advanced_form('form_get_in_touch', [
                         'redirect' => '/thank-you',
+                        'submit_text' => 'Get In Touch'
                     ]))
                 @endif
             </div>
