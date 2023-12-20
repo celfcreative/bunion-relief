@@ -240,6 +240,9 @@ domReady(async () => {
 
 loadMore();
 
+/**
+ * Change Human SVG Icon to Black
+ */
 document.addEventListener('DOMContentLoaded', function () {
   const searchFormContainer = document.querySelector('#searchform_secondary');
 

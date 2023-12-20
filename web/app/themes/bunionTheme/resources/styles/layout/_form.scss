@@ -82,8 +82,9 @@
       .af-input {
         select[data-placeholder='Select'] {
           height: 41px;
-          border-color: $secondary;
+          border: 1px solid $secondary;
           border-radius: $border-radius;
+          background-color: $white;
         }
 
         .acf-fields {
