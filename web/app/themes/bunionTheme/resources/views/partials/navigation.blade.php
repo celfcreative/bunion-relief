@@ -55,7 +55,7 @@
         </span>
     </nav>
 
-    <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="menuOffcanvas" style="height: 100vh">
+    <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="menuOffcanvas">
         <div class="offcanvas-header">
             <a class="brand" href="{{ home_url('/') }}">
                 <img src="{{ bloginfo('url') . '/app/uploads/2023/09/Purple@300x.png' }}" alt="logo1"
