@@ -1,4 +1,4 @@
-<div class="{{ $block->classes }} pb-6">
+<div class="{{ $block->classes }} pb-4 pb-md-5">
     @if ($citations)
         <div class="citation container p-0">
             <div class="accordion accordion-flush" id="accordion-{{ $id }}">

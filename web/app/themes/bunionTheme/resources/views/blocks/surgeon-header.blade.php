@@ -20,10 +20,10 @@
             </div>
             <div class="modal-img-box row align-items-center w-100 m-auto px-3">
                 <div class="col-md-8 col-12">
-                    <h1 class="modal-title text-primary fw-semibold fs-2 px-1 fw-semibold" id="iTouchModalLabel">Contact
+                    <h1 class="modal-title text-primary fw-semibold fs-2 fw-semibold" id="iTouchModalLabel">Contact
                         Us
                     </h1>
-                    <p class="modal-description ps-2 pt-0 mb-0  fw-light">{{ $formDescription }}</p>
+                    <p class="modal-description mb-0 fw-light">{{ $formDescription }}</p>
                 </div>
                 <div class="col-4">
                     {{ $formIcon }}
@@ -34,7 +34,7 @@
                 @if (!$block->preview)
                     @php(advanced_form('form_get_in_touch', [
                         'redirect' => '/thank-you',
-                        'submit_text' => 'Get In Touch'
+                        'submit_text' => 'Get in Touch'
                     ]))
                 @endif
             </div>

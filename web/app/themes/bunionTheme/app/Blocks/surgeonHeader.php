@@ -144,6 +144,7 @@ class surgeonHeader extends Block
             'surgeonCountry' => $this->getSurgeonCountry(),
             'surgeonCity' => $this->getSurgeonCity(),
             'surgeonZip' => $this->getSurgeonZip(),
+            'surgeonDescription' => $this->getSurgeonDescription(),
         ];
     }
 
@@ -154,25 +155,23 @@ class surgeonHeader extends Block
      */
     public function fields()
     {
-        $surgeonHeader = new FieldsBuilder('surgeon_header');
+        $surgeonHeader = new FieldsBuilder('surgeon_header', ['position' => 'bottom']);
 
         $surgeonHeader
-            ->addPostObject('surgeons', [
-                'label' => 'Surgeon Name',
+            ->addTextarea('surgeon_description', [
+                'label' => 'Surgeon Description',
                 'instructions' => '',
                 'required' => 0,
-                'conditional_logic' => [],
                 'wrapper' => [
                     'width' => '',
                     'class' => '',
                     'id' => '',
                 ],
-                'post_type' => ['wpsl_stores'],
-                'taxonomy' => [],
-                'allow_null' => 0,
-                'multiple' => 0,
-                'return_format' => 'object',
-                'ui' => 1,
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'new_lines' => 'br', // Possible values are 'wpautop', 'br', or ''.
             ]);
 
         return $surgeonHeader->build();
@@ -269,5 +268,8 @@ class surgeonHeader extends Block
     public function getSurgeonZip()
     {
         return (get_post_meta(get_the_ID(), 'wpsl_zip', true));
+    }
+    public function getSurgeonDescription() {
+        return get_field('surgeon_description');
     }
 }

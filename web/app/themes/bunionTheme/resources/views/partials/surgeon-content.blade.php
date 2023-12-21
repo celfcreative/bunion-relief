@@ -6,18 +6,18 @@
     @endif
 
     <div class="store-single-buttons w-100 mx-auto">
-        <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow fs-7"
-            data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get In
-            Touch</button>
         @if ($surgeonPhone)
             <a href="tel:{{ $surgeonPhone }}"
-                class="btn btn-light border-dark-subtle store-single-button shadow surgeon-phone fs-7"
+                class="btn btn-primary border-dark-subtle store-single-button shadow surgeon-phone fs-7"
                 data-dr-phone="{{ $surgeonName }}">{{ $surgeonPhone }}</a>
         @endif
         @if ($surgeonURL)
-            <a href="{{ $surgeonURL }}" class="btn btn-light border-dark-subtle store-single-button shadow fs-7">View
-                Website</a>
+            <a href="{{ $surgeonURL }}" class="btn btn-primary border-dark-subtle store-single-button shadow fs-7">View
+                website</a>
         @endif
+        <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow fs-7"
+            data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get in
+            Touch</button>
     </div>
 </div>
 
@@ -35,7 +35,9 @@
     @endif
     <div style="height:2px" aria-hidden="true" class="w-100 bg-secondary my-3 opacity-75"></div>
     <div class="store-single-description mb-4">
-        <InnerBlocks />
+        @if ($surgeonDescription)
+            {!! $surgeonDescription !!}
+        @endif
     </div>
 
     <div class="">
