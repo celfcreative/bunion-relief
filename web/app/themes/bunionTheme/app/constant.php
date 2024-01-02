@@ -22,7 +22,7 @@ function check_email_existence_callback($request)
 function checkEmailExist($email)
 {
   $api_url = 'https://api.cc.email/v3/contacts';
-  $accessToken = getenv('CONSTANT_CONTACT_TOKEN');
+  $accessToken = CONSTANT_CONTACT_TOKEN;
 
   // Set up query parameters
   $query_params = [
@@ -144,8 +144,8 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
   $emailExists = checkEmailExist($email);
 
   if ($emailExists) {
-    error_log('Email already exists in Constant Contact for: ' . $email);
-    wp_send_json_error('Email already exists in Constant Contact.');
+    // error_log('Email already exists in Constant Contact for: ' . $email);
+    // wp_send_json_error('Email already exists in Constant Contact.');
   } else {
 
     $api_url = 'https://api.cc.email/v3/contacts';
@@ -173,7 +173,7 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
       if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
         // wp_send_json_success('Data sent to Constant Contact successfully.');
       } else {
-        // dump($response_code, $response);
+        dump($response_code, $response);
         error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
         wp_send_json_error('Unexpected response from Constant Contact.');
       }
@@ -252,8 +252,8 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
   $emailExists = checkEmailExist($email);
 
   if ($emailExists) {
-    error_log('Email already exists in Constant Contact for: ' . $email);
-    wp_send_json_error('Email already exists in Constant Contact.');
+    //   error_log('Email already exists in Constant Contact for: ' . $email);
+    //   wp_send_json_error('Email already exists in Constant Contact.');
   } else {
 
     $api_url = 'https://api.cc.email/v3/contacts';
@@ -346,33 +346,41 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
     ]
   ];
 
-  $api_url = 'https://api.cc.email/v3/contacts';
-  $api_token = CONSTANT_CONTACT_TOKEN;
+  $emailExists = checkEmailExist($email);
 
-  $headers = [
-    'Content-Type' => 'application/json',
-    'Authorization' => 'Bearer ' . $api_token,
-  ];
-
-  $body = wp_json_encode($constant_contact_data);
-
-  $response = wp_remote_post($api_url, [
-    'headers' => $headers,
-    'body'    => $body,
-  ]);
-
-  if (is_wp_error($response)) {
-    dump($response);
-    error_log('Constant Contact API Request Error: ' . $response->get_error_message());
-    wp_send_json_error('Error sending data to Constant Contact.');
+  if ($emailExists) {
+    //   error_log('Email already exists in Constant Contact for: ' . $email);
+    //   wp_send_json_error('Email already exists in Constant Contact.');
   } else {
-    $response_code = wp_remote_retrieve_response_code($response);
-    if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
-      // wp_send_json_success('Data sent to Constant Contact successfully.');
+
+    $api_url = 'https://api.cc.email/v3/contacts';
+    $api_token = CONSTANT_CONTACT_TOKEN;
+
+    $headers = [
+      'Content-Type' => 'application/json',
+      'Authorization' => 'Bearer ' . $api_token,
+    ];
+
+    $body = wp_json_encode($constant_contact_data);
+
+    $response = wp_remote_post($api_url, [
+      'headers' => $headers,
+      'body'    => $body,
+    ]);
+
+    if (is_wp_error($response)) {
+      dump($response);
+      error_log('Constant Contact API Request Error: ' . $response->get_error_message());
+      wp_send_json_error('Error sending data to Constant Contact.');
     } else {
-      dump($response_code, $response);
-      error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
-      wp_send_json_error('Unexpected response from Constant Contact.');
+      $response_code = wp_remote_retrieve_response_code($response);
+      if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
+        // wp_send_json_success('Data sent to Constant Contact successfully.');
+      } else {
+        dump($response_code, $response);
+        error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
+        wp_send_json_error('Unexpected response from Constant Contact.');
+      }
     }
   }
 }, 10, 3);
