@@ -4,6 +4,8 @@ import * as bootstrap from 'bootstrap';
 import domReady from '@roots/sage/client/dom-ready';
 import loadMore from './loadMore';
 import Swiper from 'swiper';
+import axios from 'axios';
+
 import {
   Autoplay,
   FreeMode,
@@ -212,6 +214,73 @@ domReady(async () => {
     }
     console.log(document.querySelector('.acf-form-submit'));
   });
+
+  /**
+  Email Exists for Constant Contact
+  */
+
+  function formValidateEmail(formId) {
+    const emailInput = document.querySelector(`#${formId} input[type="email"]`);
+    let errorMessage = document.getElementById(`${formId}_emailErrorMessage`);
+    if (!errorMessage) {
+      errorMessage = document.createElement('p');
+      errorMessage.id = `${formId}_emailErrorMessage`;
+      errorMessage.style.display = 'none';
+      errorMessage.style.color = 'red';
+      errorMessage.textContent = 'Email already exists!';
+
+      emailInput.parentNode.insertBefore(errorMessage, emailInput);
+    }
+
+    emailInput.addEventListener('input', function (event) {
+      const submitButton = document.querySelector(
+        `#${formId} .acf-button.af-submit-button`,
+      );
+      const email = event.target.value.trim();
+      if (email !== '') {
+        checkEmailExists(email)
+          .then((response) => {
+            if (response.data.exists) {
+              displayError();
+              submitButton.disabled = true;
+            } else {
+              hideError();
+              submitButton.disabled = false;
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            hideError();
+            submitButton.disabled = false;
+          });
+      } else {
+        hideError();
+        submitButton.disabled = false;
+      }
+    });
+
+    function checkEmailExists(email) {
+      return axios.post('/wp-json/v1/check-email-exists', {email: email});
+    }
+
+    function displayError() {
+      errorMessage.style.display = 'inline';
+    }
+
+    function hideError() {
+      errorMessage.style.display = 'none';
+    }
+  }
+  const contactForm = document.querySelector('#form_contact_form');
+  const getInTouchForm = document.querySelector('#form_get_in_touch');
+  const resourceForm = document.querySelector('#form_resource_download');
+
+  if (contactForm) {
+    formValidateEmail('form_contact_form');
+  }
+  if (getInTouchForm) {
+    formValidateEmail('form_get_in_touch');
+  }
 
   /**
    * ACF Form Select Placeholder
