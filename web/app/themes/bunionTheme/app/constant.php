@@ -3,7 +3,6 @@
 /**
  * Contact Form -> Constant Contact -> Contact Form contact list
  */
-
 add_action('af/form/submission/key=form_contact_form', function ($form, $fields, $args) {
 
   if (isset($_COOKIE['utm_data'])) {
@@ -47,29 +46,29 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
     ],
     'custom_fields' => [
       [
-        'custom_field_id' => '93f964e6-95bf-11ee-8e75-fa163e64fc3f',
+        'custom_field_id' => '3c2a290c-a952-11ee-a205-fa163e0f14ae',
         'value' => $requestType
       ],
       [
-        'custom_field_id' => 'a46282f4-95bf-11ee-b1d7-fa163e4dd890',
+        'custom_field_id' => '2ad28f0a-a952-11ee-87d4-fa163e28e109',
         'value' => $learnAbout
       ],
       [
-        'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
+        'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
         'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
       ],
       [
-        'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
+        'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
         'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
       ],
       [
-        'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
+        'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
         'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
       ],
     ],
     'create_source' => 'Contact',
     'list_memberships' => [
-      'a9e451b0-98e6-11ee-b1d7-fa163e4dd890'
+      'f52bba58-a950-11ee-b090-fa163ef3b06c'
     ]
   ];
 
@@ -144,33 +143,33 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
     ],
     'custom_fields' => [
       [
-        'custom_field_id' => '93f964e6-95bf-11ee-8e75-fa163e64fc3f',
+        'custom_field_id' => '3c2a290c-a952-11ee-a205-fa163e0f14ae',
         'value' => $requestType
       ],
       [
-        'custom_field_id' => 'a6bf754c-98db-11ee-a0b9-fa163e78e228',
+        'custom_field_id' => 'da376218-a952-11ee-8b61-fa163e6a92d8',
         'value' => $termAgreement,
       ],
       [
-        'custom_field_id' => '29cfcce4-9903-11ee-99cf-fa163e75fbca',
+        'custom_field_id' => 'bdb7d794-a952-11ee-adfb-fa163e5bf31a',
         'value' => $doctorName,
       ],
       [
-        'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
+        'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
         'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
       ],
       [
-        'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
+        'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
         'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
       ],
       [
-        'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
+        'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
         'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
       ],
     ],
     'create_source' => 'Contact',
     'list_memberships' => [
-      'f0e48b4c-98d8-11ee-9f6c-fa163e78e228'
+      'fcf295a4-a950-11ee-a5c9-fa163e5bf31a'
     ]
   ];
 
@@ -241,25 +240,25 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
     ],
     'custom_fields' => [
       [
-        'custom_field_id' => 'e243b548-98e4-11ee-83ab-fa163e75fbca',
+        'custom_field_id' => 'a61e3ca4-a952-11ee-b87d-fa163e28e109',
         'value' => $resourceDownload,
       ],
       [
-        'custom_field_id' => '3d177bdc-9db6-11ee-83f8-fa163ed82b2c',
+        'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
         'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
       ],
       [
-        'custom_field_id' => '818013ae-9dbd-11ee-9b51-fa163e8d7f7f',
+        'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
         'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
       ],
       [
-        'custom_field_id' => '89e750b6-9dbd-11ee-9f58-fa163e64fc3f',
+        'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
         'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
       ],
     ],
     'create_source' => 'Contact',
     'list_memberships' => [
-      '89679a34-98e4-11ee-83ab-fa163e75fbca'
+      '046e02f0-a951-11ee-833d-fa163e6a92d8'
     ]
   ];
 
@@ -326,4 +325,4 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
   return $result;
 }
 // API Key > Secret Key > Authorization Code - To get Tokens
-// echo getAccessToken('https://localhost', '338566b6-fd20-4178-97f8-c5247baca73a', 'l_DiByiWMgsJ6sNJzufnWg', 'J1t7IhpH3uz-iAJlJdOG1EIkMCRN_jM_0RyCtYfGJKA&state=235o250eddsdff');
+// echo getAccessToken('https://localhost', '854738ac-84d3-4446-b736-b840e9a951d9', 'zV8gE6VtrNj3h3MFUYFmiQ', 'p6FWFIjUbFV-KXZTTgAXv170NKios5iqIVu-CeN8VLQ&state=235o250eddsdff');
