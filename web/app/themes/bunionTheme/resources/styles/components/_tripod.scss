@@ -1,16 +1,16 @@
 .sectionTripod {
-  transform: translateY(29.5%);
+  transform: translateY(30%);
   margin-top: $spacer - 10;
 
   @include media-breakpoint-down(xxl) {
-    transform: translateY(31.7%);
+    transform: translateY(31.5%);
   }
   @media (max-width: 349.9px) {
     transform: translateY(35%);
   }
 }
 
-.sectionTripodTest {
+.sectionTripodRed {
   position: relative;
 
   &::after {
@@ -29,8 +29,13 @@
     transform: translateY(25%);
   }
   .wp-block-column:nth-child(2) {
-    transform: translateY(14%);
+    transform: translateY(13.6%);
+
+    @include media-breakpoint-down(xxl) {
+      transform: translateY(14%);
+    }
   }
+
 }
 
 @include media-breakpoint-between(md, lg) {
@@ -38,7 +43,7 @@
     margin-top: $spacer - 6;
   }
 
-  .sectionTripodTest {
+  .sectionTripodRed {
     margin-top: $spacer * 7;
     &::after {
       height: 100%;
@@ -48,7 +53,6 @@
       transform: none;
     }
     .wp-block-column:nth-child(2) {
-      transform: none;
       margin-bottom: $spacer * 2;
     }
   }
@@ -59,7 +63,7 @@
     margin-top: $spacer - 10;
   }
 
-  .sectionTripodTest {
+  .sectionTripodRed {
     margin-top: $spacer * 14;
     &::after {
       height: 100%;

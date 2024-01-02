@@ -14,7 +14,7 @@
                     <div class="modal-body py-0">
                         <div>
                             <h2 class="modal-title px-3 text-primary fw-bold mb-3" id="downloadModalLabel"> {{ $files->post_title }} </h2>
-                            <p class="px-3 mb-0">
+                            <p class="form-content border-0 px-3 mb-0">
                                 {{ $files->post_content }}
                             </p>
                         </div>
