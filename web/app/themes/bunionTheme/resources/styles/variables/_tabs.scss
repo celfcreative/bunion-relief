@@ -15,19 +15,6 @@
       @extend .bg-secondary, .text-primary;
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
-
-      &:nth-child(2) {
-        transform: translateX(6%);
-      }
-      &:nth-child(3) {
-        transform: translateX(12%);
-      }
-      &:nth-child(4) {
-        transform: translateX(16%);
-      }
-      &:nth-child(5) {
-        transform: translateX(24%);
-      }
     }
     .active {
       @extend .bg-primary, .text-white, .border-primary;

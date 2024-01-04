@@ -7,6 +7,7 @@ add_action('rest_api_init', function () {
   register_rest_route('v1', '/check-email-exists', [
     'methods' => 'POST',
     'callback' => 'check_email_existence_callback',
+    'permission_callback' => '__return_true',
   ]);
 });
 

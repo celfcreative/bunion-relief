@@ -1,6 +1,6 @@
 <div class="{{ $block->classes }} d-none d-lg-block ">
     @if ($tabs)
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs gap-2" id="myTab" role="tablist">
             @foreach ($tabs as $tab => $value)
                 <li class="nav-item" role="presentation">
                     <button class="nav-link tab-link {{ $value->active ? 'active' : '' }} bg-secondary text-primary"
