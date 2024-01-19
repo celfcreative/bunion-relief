@@ -1,6 +1,7 @@
 .wp-block-video {
   video {
     @extend .rounded;
+    vertical-align: middle;
   }
 }
 

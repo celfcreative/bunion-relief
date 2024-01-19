@@ -42,7 +42,7 @@
                 @if ($currentPage == $healthPage)
                     <li class="my-menu-item nav-item">
                         <a href="{{ get_field('provider_button_link', 'option') }}"
-                            class="nav-link btn keyBtn keyBtn key-button-active">{{ get_field('provider_button', 'option') }}
+                            class="nav-link btn keyBtn current-menu-item">{{ get_field('provider_button', 'option') }}
                         </a>
                     </li>
                 @endif

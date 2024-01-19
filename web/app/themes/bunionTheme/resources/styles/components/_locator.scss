@@ -18,6 +18,7 @@
       }
       #wpsl-search-btn {
         @extend .text-white;
+        transform: translate(-0.5%, -1.6%);
         background: $primary;
         border-radius: $border-radius;
       }
@@ -76,6 +77,10 @@
       }
     }
   }
+}
+
+.wpsl-no-results-msg{
+  @extend .ps-5;
 }
 
 .wpsl-dropdown {

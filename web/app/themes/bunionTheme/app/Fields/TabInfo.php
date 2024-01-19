@@ -54,7 +54,7 @@ class TabInfo extends Field
             ->addPostObject('available_pages', [
                 'label' => 'Direct Page to',
                 'instructions' => 'Choose which page to direct',
-                'required' => 0,
+                'required' => 1,
                 'conditional_logic' => [
                     [
                         [

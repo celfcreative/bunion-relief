@@ -4,7 +4,7 @@
   transition: $btn-transition;
 }
 
-.current_page_ancestor {
+.single.current_page_item, .current_page_ancestor {
   @extend .position-relative;
 
   &::after {
@@ -20,25 +20,9 @@
   }
 }
 
-.page-item-32 {
-  @extend .position-relative;
 
-  &::after {
-    @extend .position-absolute, .bg-secondary;
-    content: '';
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-  }
-}
 
-.page-item-27,
-.page-item-29,
-.page-item-1714 {
+.keyBtn.current-menu-item {
   outline: 2px solid $primary;
   outline-offset: 1px;
   border-radius: $border-radius;

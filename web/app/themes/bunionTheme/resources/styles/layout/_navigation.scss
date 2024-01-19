@@ -58,21 +58,19 @@
   .my-child-menu {
     font-size: $h8-font-size;
 
-    &-link:hover {
-      border-bottom: 0.5px solid $white;
+    &-link {
+      @extend .ps-0;
+      border: 1px solid transparent;
       background-color: $primary;
-      padding-top: 8px;
-      padding-bottom: 8px;
+      
+      &:hover {
+        border-bottom: 1px solid $white;
+      }
     }
 
     .my-child-item {
       font-size: $font-size-md;
       position: relative;
-
-      a {
-        padding-left: 0;
-        padding-right: 0;
-      }
     }
   }
 

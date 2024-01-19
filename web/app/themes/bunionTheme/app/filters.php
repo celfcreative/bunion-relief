@@ -94,7 +94,7 @@ add_filter('wpsl_listing_template', function () {
     return
         "
     <li data-key='<%= id %>'>
-        <div class='store d-flex gap-3 p-3 flex-column flex-lg-row pb-5'>
+        <div class='store d-flex gap-3 p-3 px-5 flex-column flex-lg-row pb-5'>
             <%= thumb %>
             <div class='w-100'>
                 <div>

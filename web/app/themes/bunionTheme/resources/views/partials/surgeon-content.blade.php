@@ -34,7 +34,7 @@
         @endforeach
     @endif
     <div style="height:2px" aria-hidden="true" class="w-100 bg-secondary my-3 opacity-75"></div>
-    <div class="store-single-description mb-4">
+    <div class="store-single-description mb-4 fw-light">
         @if ($surgeonDescription)
             {!! $surgeonDescription !!}
         @endif
@@ -42,9 +42,9 @@
 
     <div class="">
         <p class="text-primary fw-medium mb-1">Address</p>
-        <p class="mb-1">{{ $surgeonAddress1 }} {{ $surgeonAddress2 }}</p>
-        <p class="mb-1">{{ $surgeonCity }}, {{ $surgeonZip }}</p>
-        <p class="mb-1">{{ $surgeonState }}, {{ $surgeonCountry }}</p>
+        <p class="mb-1 fw-light">{{ $surgeonAddress1 }} {{ $surgeonAddress2 }}</p>
+        <p class="mb-1 fw-light">{{ $surgeonCity }}, {{ $surgeonZip }}</p>
+        <p class="mb-1 fw-light">{{ $surgeonState }}, {{ $surgeonCountry }}</p>
         <p class='text-primary fw-light d-inline-block locate-icon'>
             <i class='bi bi-geo-alt'></i>
         </p>
