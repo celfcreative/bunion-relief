@@ -138,7 +138,7 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
     ],
     'create_source' => 'Contact',
     'list_memberships' => [
-      'f52bba58-a950-11ee-b090-fa163ef3b06c'
+      '4d8433a8-c1cd-11ee-b534-fa163e0b03e8'
     ]
   ];
 
@@ -151,7 +151,8 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
 
     $api_url = 'https://api.cc.email/v3/contacts';
     // 
-    $api_token = CONSTANT_CONTACT_TOKEN;
+    $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
+
     $api_refreshtoken = CONSTANT_REFRESH_TOKEN;
 
     $headers = [
@@ -204,7 +205,7 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
   $phone = af_get_field('mobile_number');
   $email = af_get_field('email');
   $requestType = af_get_field('please_type_your_request');
-  $termAgreement = af_get_field('terms_agreement');
+  $termAgreement = af_get_field('terms_agreement') ? 'I agree to the terms of the Privacy Policy' : '';
   $doctorName = af_get_field('doctor_name');
 
   $constant_contact_data = [
@@ -258,7 +259,7 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
   } else {
 
     $api_url = 'https://api.cc.email/v3/contacts';
-    $api_token = CONSTANT_CONTACT_TOKEN;
+    $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
 
     $headers = [
       'Content-Type' => 'application/json',
@@ -355,7 +356,7 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
   } else {
 
     $api_url = 'https://api.cc.email/v3/contacts';
-    $api_token = CONSTANT_CONTACT_TOKEN;
+    $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
 
     $headers = [
       'Content-Type' => 'application/json',
@@ -386,6 +387,147 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
   }
 }, 10, 3);
 
+/**
+ * Symptom Quiz -> Constant Contact -> Symptom Quiz list
+ */
+add_action('af/form/submission/key=form_symptom_checker', function ($form, $fields, $args) {
+
+  if (isset($_COOKIE['utm_data'])) {
+    $utm_data = $_COOKIE['utm_data'];
+
+    $utm_data_unescaped = stripslashes($utm_data);
+    $decoded_utm = json_decode($utm_data_unescaped);
+
+    update_field('utm_source', $decoded_utm->utm_source);
+    update_field('utm_medium', $decoded_utm->utm_medium);
+    update_field('utm_campaign', $decoded_utm->utm_campaign);
+  }
+
+  // Fetch data from the form fields
+  $firstName = af_get_field('first_name');
+  $lastName = af_get_field('last_name');
+  $ageRange = af_get_field('how_old_are_you');
+  $email = af_get_field('email');
+  $phone = af_get_field('mobile_number');
+  $zipCode = af_get_field('zip_code');
+  $termAgreement = af_get_field('terms_agreement') ? 'I agree to the terms of the Privacy Policy' : '';
+  $question1 = af_get_field('which_of_the_following_symptoms_describes_the_bunion_on_your_big_toe');
+  $question2 = af_get_field('select_an_image_that_describe_any_other_issues_you_may_have_with_your_feet');
+  $question3 = af_get_field('which_of_the_following_symptoms_are_you_experiencing');
+  $question4 = af_get_field('many_people_experience_pain_in_their_big_toe_as_a_result_of_having_a_bunion_have_you_ever_been_diagnosed_with_a_bunion');
+  $question5 = af_get_field('has_a_doctor_ever_recommended_that_you_need_surgery_to_correct_your_bunion');
+  $question6 = af_get_field('if_you_had_surgery_did_this_successfully_repair_your_bunion');
+
+  $question1AnswersStr = implode(', ', $question1);
+  $question2AnswersStr = implode(', ', $question2);
+  $question3AnswersStr = implode(', ', $question3);
+  $question6AnswersStr = implode(', ', $question6);
+
+    $constant_contact_data = [
+      'email_address' =>
+      ['address' => $email],
+      'first_name' => $firstName,
+      'last_name' => $lastName,
+      'phone_numbers' => [
+        [
+          'phone_number' => $phone,
+          'kind' => 'mobile',
+        ],
+      ],
+      'street_addresses' => [
+        [
+          'kind' => 'home',
+          'postal_code' => $zipCode,
+        ]
+      ],
+      'custom_fields' => [
+        [
+          'custom_field_id' => '49110fd2-c1df-11ee-a3bc-fa163e5bf31a',
+          'value' => $question1AnswersStr
+        ],
+        [
+          'custom_field_id' => '20f67ddc-c1e1-11ee-a3bc-fa163e5bf31a',
+          'value' => $question2AnswersStr
+        ],
+        [
+          'custom_field_id' => '5bb898c4-c1e1-11ee-8eb0-fa163e6a92d8',
+          'value' => $question3AnswersStr
+        ],
+        [
+          'custom_field_id' => '6bcaa0fe-c1e1-11ee-a765-fa163ef3b06c',
+          'value' => $question4
+        ],
+        [
+          'custom_field_id' => '7b5e8cce-c1e1-11ee-a3bc-fa163e5bf31a',
+          'value' => $question5
+        ],
+        [
+          'custom_field_id' => '881a296e-c1e1-11ee-abe2-fa163eec71c4',
+          'value' => $question6AnswersStr
+        ],
+        [
+          'custom_field_id' => 'da376218-a952-11ee-8b61-fa163e6a92d8',
+          'value' => $termAgreement,
+        ],
+        [
+          'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
+          'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
+        ],
+        [
+          'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
+          'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
+        ],
+        [
+          'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
+          'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
+        ],
+      ],
+      'create_source' => 'Contact',
+      'list_memberships' => [
+        'd3575724-c1d4-11ee-9991-fa163e5bf31a'
+      ]
+    ];
+
+  $emailExists = checkEmailExist($email);
+
+  if ($emailExists) {
+    // error_log('Email already exists in Constant Contact for: ' . $email);
+    // wp_send_json_error('Email already exists in Constant Contact.');
+  } else {
+
+    $api_url = 'https://api.cc.email/v3/contacts';
+    // 
+    $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
+
+    $api_refreshtoken = CONSTANT_REFRESH_TOKEN;
+
+    $headers = [
+      'Content-Type' => 'application/json',
+      'Authorization' => 'Bearer ' . $api_token,
+    ];
+
+    $body = wp_json_encode($constant_contact_data);
+
+    $response = wp_remote_post($api_url, [
+      'headers' => $headers,
+      'body'    => $body,
+    ]);
+
+    if (is_wp_error($response)) {
+      error_log('Constant Contact API Request Error: ' . $response->get_error_message());
+      wp_send_json_error('Error sending data to Constant Contact.');
+    } else {
+      $response_code = wp_remote_retrieve_response_code($response);
+      if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
+        // wp_send_json_success('Data sent to Constant Contact successfully.');
+      } else {
+        dump($response_code, $response);
+        error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
+        wp_send_json_error('Unexpected response from Constant Contact.');
+      }
+    }
+  }
+}, 10, 3);
 
 function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
 {
@@ -417,5 +559,5 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
   curl_close($ch);
   return $result;
 }
-// API Key > Secret Key > Authorization Code - To get Tokens
-// echo getAccessToken('https://localhost', '854738ac-84d3-4446-b736-b840e9a951d9', 'zV8gE6VtrNj3h3MFUYFmiQ', 'p6FWFIjUbFV-KXZTTgAXv170NKios5iqIVu-CeN8VLQ&state=235o250eddsdff');
+// API Key > Secret Key > Authorization Code - To get Access Token & Refresh Token
+// echo getAccessToken('https://localhost', '854738ac-84d3-4446-b736-b840e9a951d9', 'o5kGJQvfnvz3zjS_dT0V0w', '3MKzAv2UDmr114deOzjq2o6QET59Kvv6tiuBg4p0V9E');

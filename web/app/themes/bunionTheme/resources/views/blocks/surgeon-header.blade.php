@@ -33,7 +33,7 @@
             <div class="modal-body pt-0">
                 @if (!$block->preview)
                     @php(advanced_form('form_get_in_touch', [
-                        'redirect' => '/thank-you',
+                        'redirect' => '/thank-you-contact-form',
                         'submit_text' => 'Get in Touch'
                     ]))
                 @endif

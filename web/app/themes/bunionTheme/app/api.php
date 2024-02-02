@@ -50,7 +50,7 @@ function refreshToken($refreshToken, $clientId, $clientSecret)
 
 function refreshTokenWrapper()
 {
-  $token = refreshToken(CONSTANT_REFRESH_TOKEN, '338566b6-fd20-4178-97f8-c5247baca73a', 'l_DiByiWMgsJ6sNJzufnWg');
+  $token = refreshToken(CONSTANT_REFRESH_TOKEN, CONSTANT_API_KEY, CONSTANT_CONTACT_SECRET_KEY);
 
   updateRefreshToken($token);
 
