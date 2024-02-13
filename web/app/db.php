@@ -1,1 +1,0 @@
-/Users/isaac/Sites/bunion-relief/web/app/plugins/query-monitor/wp-content/db.php
