@@ -122,3 +122,29 @@ function refreshToken_deactivate()
 {
     wp_clear_scheduled_hook('refreshToken');
 }
+
+function create_twilio_table()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'twilio';
+
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        `sid` VARCHAR(255) PRIMARY KEY,
+        `duration` INT,
+        `from_number` VARCHAR(20),
+        `status` VARCHAR(50),
+        `start_time` DATETIME,
+        `end_time` DATETIME,
+        `to_number` VARCHAR(20),
+        `direction` VARCHAR(20),
+        `queue_time` INT,
+        `price` DECIMAL(10, 5)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+add_action('after_setup_theme', 'create_twilio_table');
