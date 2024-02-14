@@ -75,25 +75,10 @@ function updateTwilioData()
 
     $calls = $twilio->calls->read([], 20);
 
+    $table_name = $wpdb->prefix . 'twilio';
 
     // Add call data to response
     foreach ($calls as $record) {
-        $response['calls_data'][] = array(
-            'duration' => $record->duration,
-            'from' => $record->from,
-            'status' => $record->status,
-            'start_time' => $record->startTime,
-            'end_time' => $record->endTime,
-            'to' => $record->to,
-            'direction' => $record->direction,
-            'queueTime' => $record->queueTime,
-            'price' => $record->price,
-            'direction' => $record->direction,
-            'sid' => $record->sid
-        );
-
-        $table_name = $wpdb->prefix . 'twilio';
-
         $wpdb->replace(
             $table_name,
             [
