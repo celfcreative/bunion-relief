@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Your base production configuration goes in this file. Environment-specific
  * overrides go in their respective config/environments/{{WP_ENV}}.php file.
@@ -115,6 +116,10 @@ Config::define('CONSTANT_CONTACT_SECRET_KEY', env('CONSTANT_CONTACT_SECRET_KEY')
 Config::define('CONSTANT_API_KEY', env('CONSTANT_API_KEY'));
 Config::define('AUTOMATIC_UPDATER_DISABLED', true);
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+
+// Twilio
+Config::define('TWILIO_ACCOUNT_SID', env('TWILIO_ACCOUNT_SID'));
+Config::define('TWILIO_AUTH_TOKEN', env('TWILIO_AUTH_TOKEN'));
 
 // Disable the plugin and theme file editor in the admin
 Config::define('DISALLOW_FILE_EDIT', true);

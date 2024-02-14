@@ -46,7 +46,8 @@
     "log1x/poet": "^2.0",
     "log1x/sage-directives": "^2.0",
     "log1x/sage-svg": "^1.1",
-    "stoutlogic/acf-builder": "^1.12"
+    "stoutlogic/acf-builder": "^1.12",
+    "twilio/sdk": "^7.15"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.7.1"
