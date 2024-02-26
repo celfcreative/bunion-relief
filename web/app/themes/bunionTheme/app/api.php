@@ -13,6 +13,13 @@ add_action('rest_api_init', function () {
     register_rest_route('v1', '/twilio', [
         'methods' => 'GET',
         'callback' => 'updateTwilioData',
+        'permission_callback' => '__return_true',
+    ]);
+
+    register_rest_route('v1', '/analytics', [
+        'methods' => 'GET',
+        'callback' => 'updateAnalyticsData',
+        'permission_callback' => '__return_true',
     ]);
 });
 
@@ -96,5 +103,65 @@ function updateTwilioData()
         );
     }
 
-    return $response;
+    return 'success';
+}
+
+function updateAnalyticsData()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'analytics';
+    $wpdb->query("TRUNCATE TABLE $table_name");
+    $entries = get_posts([
+        'post_type' => 'af_entry',
+        'posts_per_page' => '-1',
+        'meta_query' => [
+            [
+                'key' => 'entry_form',
+                'value' => 'form_symptom_checker',
+            ],
+        ],
+    ]);
+    foreach ($entries as $entry) {
+        $entryID = $entry->ID;
+        $questions = [
+            'which_of_the_following_symptoms_describes_the_bunion_on_your_big_toe',
+            'select_an_image_that_describe_any_other_issues_you_may_have_with_your_feet',
+            'which_of_the_following_symptoms_are_you_experiencing',
+            'many_people_experience_pain_in_their_big_toe_as_a_result_of_having_a_bunion_have_you_ever_been_diagnosed_with_a_bunion',
+            'has_a_doctor_ever_recommended_that_you_need_surgery_to_correct_your_bunion',
+            'if_you_had_surgery_did_this_successfully_repair_your_bunion',
+            'youre_almost_done!_zip_code',
+        ];
+        foreach ($questions as $index => $question) {
+            $values = get_field($question, $entryID);
+            if (!is_array($values)) {
+                $values = [$values];
+            }
+
+            foreach ($values as $value) {
+                echo $entryID . '-' .
+                    $index . "\n";
+                echo $question . ': ' . trim(strip_tags($value)) . "\n";
+                if ($value) {
+                    $result = $wpdb->insert(
+                        $table_name,
+                        [
+                            'entry_id' => $entry->ID,
+                            'question' => $question,
+                            'value' => trim(strip_tags($value))
+                        ]
+                    );
+
+                    if (
+                        $result ===
+                        false
+                    ) {
+                        echo "Error: " . $wpdb->last_error . "\n";
+                    }
+                }
+            }
+        }
+    }
+
+    return;
 }

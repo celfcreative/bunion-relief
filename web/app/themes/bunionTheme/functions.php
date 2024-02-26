@@ -148,3 +148,23 @@ function create_twilio_table()
 }
 
 add_action('after_setup_theme', 'create_twilio_table');
+
+function create_analytics_table()
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'analytics';
+
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        entry_id BIGINT,
+        `question` VARCHAR(255),
+        value VARCHAR(255)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
+add_action('after_setup_theme', 'create_analytics_table');
