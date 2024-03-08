@@ -3,3 +3,70 @@ body {
   overscroll-behavior: none;
   font-family: 'Libre Franklin', sans-serif;
 }
+
+.holding-page {
+  background-image: url('~@images/HoldingPageBG.jpg');
+  background-position: center;
+  background-size: cover;
+
+  @include media-breakpoint-down(md){
+    height: 100% !important;
+  }
+
+  &-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding-inline: 1rem;
+    transform: scale(85%);
+
+    .content-box {
+      flex-basis: 60%;
+      .content-heading {
+        max-width: 500px;
+
+        h1 {
+          font-size: 68px;
+
+          @include media-breakpoint-down(lg) {
+            font-size: 58px;
+          }
+          @include media-breakpoint-down(sm) {
+            font-size: 40px;
+          }
+        }
+      }
+      .content-description {
+        @media(max-width: 415px){
+          font-size: 26px;
+        }
+      }
+    }
+
+    .images-box {
+      flex-basis: 40%;
+      @include media-breakpoint-down(md) {
+        transform: translate(23%, -15%) scale(0.8);
+        margin-top: -25%;
+        max-width: 500px;
+      }
+      
+      .holding-page-precisionmis {
+        top: 0;
+        left: -50%;
+        transform: translate(0, 20%);
+      }
+      .holding-page-phantomis {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(0, 10%);
+      }
+    }
+  }
+  &-content {
+    @include media-breakpoint-down(md){
+      transform: translateY(-4%);
+    }
+  }
+}
