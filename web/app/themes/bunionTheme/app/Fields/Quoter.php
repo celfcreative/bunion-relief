@@ -24,6 +24,10 @@ class Quoter extends Field
                 'label' => 'Location',
                 'required' => 0,
             ])
+            ->addText('location-line-2', [
+                'label' => 'Location Line 2',
+                'required' => 0,
+            ])
             ->addTextarea('quote', [
                 'label' => 'Quote',
                 'required' => 0,

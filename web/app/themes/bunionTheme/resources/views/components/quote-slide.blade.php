@@ -6,7 +6,8 @@
     @endif
     <div class="quote-content col-12 col-lg-10 px-0 px-lg-5">
         <p class="fs-4 fw-light lh-base mb-4">{{ $quote }}</p>
-        <h3 class="heading d-inline-block fw-medium fs-4 text-primary fst-italic">{{ $name }}</h3>
-        <span class="p-0 fw-lighter text-primary fst-italic">{{ $location }}</span>
+        <h3 class="heading fs-6 fw-medium">{{ $name }}</h3>
+        <span class="p-0 fw-lighter d-block fs-6">{{ $location }}</span>
+        <span class="p-0 fw-lighter fs-6">{{ $locationline2 }}</span>
     </div>
 </div>

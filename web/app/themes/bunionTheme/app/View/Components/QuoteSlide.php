@@ -8,6 +8,7 @@ class QuoteSlide extends Component
 {
 
     public $location;
+    public $locationline2;
     public $quote;
     public $name;
     public $image;
@@ -19,6 +20,7 @@ class QuoteSlide extends Component
     public function __construct($id)
     {
         $this->location = get_field('location', $id);
+        $this->locationline2 = get_field('location-line-2', $id);
         $this->quote = get_field('quote', $id);
         $this->name = get_the_title($id);
         $this->image = get_the_post_thumbnail_url($id, '500-image');
