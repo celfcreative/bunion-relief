@@ -10,6 +10,12 @@ add_action('rest_api_init', function () {
         'permission_callback' => '__return_true',
     ]);
 
+    register_rest_route('v1', '/authentication', [
+        'methods' => 'GET',
+        'callback' => 'getAuthenticationCode',
+        'permission_callback' => '__return_true',
+    ]);
+
     register_rest_route('v1', '/twilio', [
         'methods' => 'GET',
         'callback' => 'updateTwilioData',
@@ -58,16 +64,18 @@ function refreshToken($refreshToken, $clientId, $clientSecret)
     $result = curl_exec($ch);
     curl_close($ch);
 
-    return json_decode($result)->access_token;
+    return json_decode($result);
 }
 
 function refreshTokenWrapper()
 {
-    $token = refreshToken(CONSTANT_REFRESH_TOKEN, CONSTANT_API_KEY, CONSTANT_CONTACT_SECRET_KEY);
-
-    updateRefreshToken($token);
-
-    echo 'test update';
+    $token = refreshToken(get_field('constant_contact_refresh_token', 'option'), CONSTANT_API_KEY, CONSTANT_CONTACT_SECRET_KEY);
+    if(isset($token->error)) {
+        echo $token->error;
+    }else{
+        updateRefreshToken($token->access_token);
+    }
+    die();
 }
 function updateRefreshToken($token)
 {

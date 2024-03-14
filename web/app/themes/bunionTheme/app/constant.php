@@ -151,9 +151,9 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
 
     $api_url = 'https://api.cc.email/v3/contacts';
     // 
-    $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
+    $api_token = get_field('constant_contact_token', 'option');
 
-    $api_refreshtoken = CONSTANT_REFRESH_TOKEN;
+    $api_refreshtoken = get_field('constant_contact_refresh_token', 'option');
 
     $headers = [
       'Content-Type' => 'application/json',
@@ -499,7 +499,7 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
     // 
     $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
 
-    $api_refreshtoken = CONSTANT_REFRESH_TOKEN;
+    $api_refreshtoken = get_field('constant_contact_refresh_token', 'option');
 
     $headers = [
       'Content-Type' => 'application/json',
@@ -538,7 +538,7 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
   $base = 'https://authz.constantcontact.com/oauth2/default/v1/token';
 
   // Create full request URL
-  $url = $base . '?code=' . $code . '&redirect_uri=' . $redirectURI . '&grant_type=authorization_code';
+  $url = $base . '?code=' . $code . '&redirect_uri=' . urlencode($redirectURI) . '&grant_type=authorization_code';
   curl_setopt($ch, CURLOPT_URL, $url);
 
   // Set authorization header
@@ -557,7 +557,15 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
   // Make the call
   $result = curl_exec($ch);
   curl_close($ch);
+  
   return $result;
 }
 // API Key > Secret Key > Authorization Code - To get Access Token & Refresh Token
-// echo getAccessToken('https://localhost', '854738ac-84d3-4446-b736-b840e9a951d9', 'o5kGJQvfnvz3zjS_dT0V0w', '3MKzAv2UDmr114deOzjq2o6QET59Kvv6tiuBg4p0V9E');
+
+https://authz.constantcontact.com/oauth2/default/v1/authorize?client_id=854738ac-84d3-4446-b736-b840e9a951d9&redirect_uri=https://localhost&response_type=code&scope=contact_data%20campaign_data%20offline_access&state=235o250eddsdff
+
+
+function getAuthenticationCode() 
+{
+  return getAccessToken(home_url(), CONSTANT_API_KEY, CONSTANT_CONTACT_SECRET_KEY, get_field('constant_contact_authorization_code', 'option'));
+}

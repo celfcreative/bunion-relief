@@ -74,7 +74,12 @@ class Options extends Field
 
         $options
         ->addTab('site_api', ['label'=>'Constant Contact API'])
-        ->addTextArea('constant_contact_token', ['label'=>'Constant Contact API Token']);
+        ->addTextArea('constant_contact_token', ['label'=>'Constant Contact Access Token'])
+        ->addTextArea('constant_contact_refresh_token', ['label'=>'Constant Contact API Refresh Token']);
+
+        $options
+        ->addTab('authorization_constant', ['label'=>'Constant Contact Authorization Code'])
+        ->addTextArea('constant_contact_authorization_code', ['label'=>'Constant Contact Authorization Code']);
 
         // scripts **later
         return $options->build();
