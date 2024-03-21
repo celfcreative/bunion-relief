@@ -70,9 +70,9 @@ function refreshToken($refreshToken, $clientId, $clientSecret)
 function refreshTokenWrapper()
 {
     $token = refreshToken(get_field('constant_contact_refresh_token', 'option'), CONSTANT_API_KEY, CONSTANT_CONTACT_SECRET_KEY);
-    if(isset($token->error)) {
+    if (isset($token->error)) {
         echo $token->error;
-    }else{
+    } else {
         updateRefreshToken($token->access_token);
     }
     die();
@@ -156,6 +156,7 @@ function updateAnalyticsData()
                         [
                             'entry_id' => $entry->ID,
                             'question' => $question,
+                            'created_at' => get_the_date('', $entryID),
                             'value' => trim(strip_tags($value))
                         ]
                     );
