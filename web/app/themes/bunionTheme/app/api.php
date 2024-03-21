@@ -147,16 +147,14 @@ function updateAnalyticsData()
             }
 
             foreach ($values as $value) {
-                echo $entryID . '-' .
-                    $index . "\n";
-                echo $question . ': ' . trim(strip_tags($value)) . "\n";
+                echo get_the_date('Y-m-d H:i:s', $entry->ID) . "\n";
                 if ($value) {
                     $result = $wpdb->insert(
                         $table_name,
                         [
-                            'entry_id' => $entry->ID,
+                            'entry_id' => $entryID,
                             'question' => $question,
-                            'created_at' => get_the_date('', $entryID),
+                            'created_at' => get_the_date('Y-m-d H:i:s', $entry->ID),
                             'value' => trim(strip_tags($value))
                         ]
                     );
