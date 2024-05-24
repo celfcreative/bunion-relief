@@ -1,6 +1,6 @@
 <div class="w-100">
     <div>
-        <h2 class="store-single-title text-primary fw-semibold">{{ $surgeonName }}</h2>
+        <h2 class="store-single-title text-primary fw-semibold">{!! $surgeonName !!}</h2>
         @if ($surgeonCategory)
             @foreach ($surgeonCategory as $category)
                 <p class="h3 fw-light d-sm-inline-block d-block mb-0">
@@ -10,11 +10,12 @@
                     @endif
                 </p>
             @endforeach
+        @endif
             <div class="d-flex flex-column flex-md-row justify-content-between w-100 my-4 gap-3">
                 @if ($surgeonPhone)
                     <a href="tel:{{ $surgeonPhone }}"
                         class="btn btn-primary border-dark-subtle store-single-button shadow surgeon-phone fs-7"
-                        data-dr-phone='{{ $surgeonName }}'>{{ $surgeonPhone }}</a>
+                        data-dr-phone='{!! $surgeonName !!}'>{{ $surgeonPhone }}</a>
                 @endif
                 <div class="d-flex flex-column flex-md-row gap-3">
                     @if ($surgeonURL)
@@ -24,12 +25,11 @@
                     @endif
 
                     <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow fs-7"
-                        data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get
+                        data-title="{!! $surgeonName !!}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get
                         in
                         Touch</button>
                 </div>
             </div>
-        @endif
     </div>
     <div style="height:2px" aria-hidden="true" class="w-100 bg-secondary my-3 opacity-75"></div>
     <div class="store-single-description mb-4">

@@ -1,12 +1,12 @@
 @if ($surgeonImage)
     <div
-        class="{{ $block->classes }} store-single-content d-flex align-items-center gap-md-6 gap-4 my-4 my-md-6 flex-column flex-lg-row">
+        class="{{ $block->classes }} store-single-content d-flex align-items-center gap-md-6 gap-4 my-4 mb-md-4 my-md-6 flex-column flex-lg-row">
 
         @include('partials.surgeon-content')
     </div>
 @else
     <div
-        class="{{ $block->classes }} store-single-content d-flex align-items-start gap-md-6 gap-4 my-4 my-md-6 flex-column">
+        class="{{ $block->classes }} store-single-content d-flex align-items-start gap-md-6 gap-4 my-4 mb-md-4 my-md-6 flex-column">
         
         @include('partials.surgeon-content-noimg')
     </div>

@@ -9,20 +9,20 @@
         @if ($surgeonPhone)
             <a href="tel:{{ $surgeonPhone }}"
                 class="btn btn-primary border-dark-subtle store-single-button shadow surgeon-phone fs-7"
-                data-dr-phone="{{ $surgeonName }}">{{ $surgeonPhone }}</a>
+                data-dr-phone="{!! $surgeonName !!}">{{ $surgeonPhone }}</a>
         @endif
         @if ($surgeonURL)
             <a href="{{ $surgeonURL }}" class="btn btn-primary border-dark-subtle store-single-button shadow fs-7">View
                 website</a>
         @endif
         <button type="button" class="btn btn-primary store-single-button btnStoreSingle shadow fs-7"
-            data-title="{{ $surgeonName }}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get in
+            data-title="{!! $surgeonName !!}" data-bs-toggle="modal" data-bs-target="#iTouchModal">Get in
             Touch</button>
     </div>
 </div>
 
 <div class="w-100">
-    <h2 class="store-single-title text-primary fw-semibold">{{ $surgeonName }}</h2>
+    <h2 class="store-single-title text-primary fw-semibold">{!! $surgeonName !!}</h2>
     @if ($surgeonCategory)
         @foreach ($surgeonCategory as $key => $category)
             <p class="h3 fw-light mb-1 d-sm-inline-block d-block">
