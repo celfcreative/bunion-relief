@@ -146,7 +146,6 @@ function create_twilio_table()
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 }
-
 add_action('after_setup_theme', 'create_twilio_table');
 
 function create_analytics_table()
@@ -160,11 +159,11 @@ function create_analytics_table()
         id INT AUTO_INCREMENT PRIMARY KEY,
         entry_id BIGINT,
         `question` VARCHAR(255),
+        `created_at` TIMESTAMP,
         value VARCHAR(255)
     ) $charset_collate;";
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
 }
-
 add_action('after_setup_theme', 'create_analytics_table');
