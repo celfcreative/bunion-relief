@@ -52,7 +52,9 @@
                                 </li>
                             @endif
                         </ul>
-                        <a href="{{ home_url('/citation') }}" class="text-white">Citations</a>
+                        @if ($citationLabel && $citationLink )
+                            <a href="{{ $citationLink }}" class="text-white">{{ $citationLabel }}</a>
+                        @endif
                     </div>
                 </div>
 

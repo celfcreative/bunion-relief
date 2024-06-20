@@ -58,6 +58,11 @@ class Options extends Field
         ->addUrl('footer_button_link', ['label' => 'Link']);
 
         $options
+        ->addTab('site_citation', ['label'=>'Citation Button'])
+        ->addText('citation_button', ['label' => 'Button'])
+        ->addUrl('citation_button_link', ['label' => 'Link']);
+
+        $options
         ->addTab('site_health_provider', ['label'=>'Health Provider Button'])
         ->addText('provider_button', ['label' => 'Button Name'])
         ->addUrl('provider_button_link', ['label' => 'Link']);
