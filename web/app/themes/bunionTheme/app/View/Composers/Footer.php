@@ -24,62 +24,72 @@ class Footer extends Composer
     public function with()
     {
         return [
-            'socialFB'=>$this->socialFB(),
-            'socialIG'=>$this->socialIG(),
-            'socialX'=>$this->socialX(),
-            'address'=>$this->address(),
-            'phoneNum'=>$this->phoneNum(),
-            'email'=>$this->email(),
-            'getRepeaterButtons'=>$this->getRepeaterButtons(),
+            'socialFB' => $this->socialFB(),
+            'socialIG' => $this->socialIG(),
+            'socialX' => $this->socialX(),
+            'address' => $this->address(),
+            'phoneNum' => $this->phoneNum(),
+            'email' => $this->email(),
+            'getRepeaterButtons' => $this->getRepeaterButtons(),
             'productPage' => $this->isProductPage(),
             'healthPage' => $this->isHealthProviderPage(),
             'currentPage' => $this->isCurrentPage(),
+            'citationLabel' => $this->getCitationLabel(),
+            'citationLink' => $this->getCitationLink(),
         ];
     }
 
-    public function address() {
-        $address = get_field('contact_office_address','option');
+    public function address()
+    {
+        $address = get_field('contact_office_address', 'option');
 
         return $address;
     }
 
-    public function phoneNum() {
-        $phoneNum = get_field('contact_office_number','option');
+    public function phoneNum()
+    {
+        $phoneNum = get_field('contact_office_number', 'option');
 
         return $phoneNum;
     }
 
-    public function email() {
-        $email = get_field('contact_office_email','option');
+    public function email()
+    {
+        $email = get_field('contact_office_email', 'option');
 
         return $email;
     }
 
-    public function getRepeaterButtons() {
+    public function getRepeaterButtons()
+    {
         $getRepeaterButtons = get_field('footer_buttons', 'option');
 
-        return $getRepeaterButtons;   
+        return $getRepeaterButtons;
     }
 
-    public function socialFB() {
+    public function socialFB()
+    {
         $socialFB = get_field('facebook_link', 'option');
-        
+
         return $socialFB;
     }
 
-    public function socialIG() {
+    public function socialIG()
+    {
         $socialIG = get_field('instagram_link', 'option');
 
         return $socialIG;
     }
 
-    public function socialX() {
+    public function socialX()
+    {
         $socialX = get_field('twitter_link', 'option');
 
         return $socialX;
     }
 
-    public function isProductPage() {
+    public function isProductPage()
+    {
         $parent_product_page_id = 22;
         $current_page_id = get_the_ID();
         $parent_page_id = wp_get_post_parent_id($current_page_id);
@@ -87,13 +97,28 @@ class Footer extends Composer
         return $parent_page_id == $parent_product_page_id;
     }
 
-    public function isHealthProviderPage() {
+    public function isHealthProviderPage()
+    {
         $health_page_id = 1714;
 
         return $health_page_id;
     }
 
-    public function isCurrentPage() {
+    public function isCurrentPage()
+    {
         return get_the_ID();
+    }
+
+    public function getCitationLabel()
+    {
+        $citation = get_field('citation_button', 'option');
+
+        return isset($citation) ? $citation : null;
+    }
+    public function getCitationLink()
+    {
+        $citation = get_field('citation_button_link', 'option');
+
+        return isset($citation) ? $citation : null;
     }
 }

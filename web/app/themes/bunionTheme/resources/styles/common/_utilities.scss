@@ -131,3 +131,13 @@ html {
     width: 60% !important;
   }
 }
+
+.toast {
+  position: fixed;
+  top: 20px;
+  z-index: 100;
+
+  @include media-breakpoint-up(sm) {
+    right: 50px;
+  }
+}

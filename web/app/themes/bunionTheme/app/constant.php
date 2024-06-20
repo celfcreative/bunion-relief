@@ -23,7 +23,9 @@ function check_email_existence_callback($request)
 function checkEmailExist($email)
 {
   $api_url = 'https://api.cc.email/v3/contacts';
-  $accessToken = CONSTANT_CONTACT_TOKEN;
+  $accessToken = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
+  // $accessToken = CONSTANT_CONTACT_TOKEN;
+
 
   // Set up query parameters
   $query_params = [
@@ -168,16 +170,24 @@ add_action('af/form/submission/key=form_contact_form', function ($form, $fields,
     ]);
 
     if (is_wp_error($response)) {
-      error_log('Constant Contact API Request Error: ' . $response->get_error_message());
-      wp_send_json_error('Error sending data to Constant Contact.');
+      if (WP_ENV === 'development') {
+        error_log('Constant Contact API Request Error: ' . $response->get_error_message());
+      }
+      // Show a generic message to the user
+      echo "<p>Thank you for your submission! We will be in touch soon.</p>";
     } else {
       $response_code = wp_remote_retrieve_response_code($response);
       if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
-        // wp_send_json_success('Data sent to Constant Contact successfully.');
+        // Successful response, show a success message
+        echo "<p>Thank you for your submission!</p>";
       } else {
-        dump($response_code, $response);
-        error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
-        wp_send_json_error('Unexpected response from Constant Contact.');
+        if (WP_ENV === 'development') {
+          dump($response_code, $response);
+          error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
+          wp_send_json_error('Unexpected response from Constant Contact.');
+        }
+        // Show a generic message to the user
+        echo "<p>Thank you for your submission! We will be in touch soon.</p>";
       }
     }
   }
@@ -274,17 +284,24 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
     ]);
 
     if (is_wp_error($response)) {
-      dump($response);
-      error_log('Constant Contact API Request Error: ' . $response->get_error_message());
-      wp_send_json_error('Error sending data to Constant Contact.');
+      if (WP_ENV === 'development') {
+        error_log('Constant Contact API Request Error: ' . $response->get_error_message());
+      }
+      // Show a generic message to the user
+      echo "<p>Thank you for your submission! We will be in touch soon.</p>";
     } else {
       $response_code = wp_remote_retrieve_response_code($response);
       if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
-        // wp_send_json_success('Data sent to Constant Contact successfully.');
+        // Successful response, show a success message
+        echo "<p>Thank you for your submission!</p>";
       } else {
-        dump($response_code, $response);
-        error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
-        wp_send_json_error('Unexpected response from Constant Contact.');
+        if (WP_ENV === 'development') {
+          dump($response_code, $response);
+          error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
+          wp_send_json_error('Unexpected response from Constant Contact.');
+        }
+        // Show a generic message to the user
+        echo "<p>Thank you for your submission! We will be in touch soon.</p>";
       }
     }
   }
@@ -371,17 +388,24 @@ add_action('af/form/submission/key=form_resource_download', function ($form, $fi
     ]);
 
     if (is_wp_error($response)) {
-      dump($response);
-      error_log('Constant Contact API Request Error: ' . $response->get_error_message());
-      wp_send_json_error('Error sending data to Constant Contact.');
+      if (WP_ENV === 'development') {
+        error_log('Constant Contact API Request Error: ' . $response->get_error_message());
+      }
+      // Show a generic message to the user
+      echo "<p>Thank you for your submission! We will be in touch soon.</p>";
     } else {
       $response_code = wp_remote_retrieve_response_code($response);
       if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
-        // wp_send_json_success('Data sent to Constant Contact successfully.');
+        // Successful response, show a success message
+        echo "<p>Thank you for your submission!</p>";
       } else {
-        dump($response_code, $response);
-        error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
-        wp_send_json_error('Unexpected response from Constant Contact.');
+        if (WP_ENV === 'development') {
+          dump($response_code, $response);
+          error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
+          wp_send_json_error('Unexpected response from Constant Contact.');
+        }
+        // Show a generic message to the user
+        echo "<p>Thank you for your submission! We will be in touch soon.</p>";
       }
     }
   }
@@ -423,70 +447,70 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
   $question3AnswersStr = implode(', ', $question3);
   $question6AnswersStr = implode(', ', $question6);
 
-    $constant_contact_data = [
-      'email_address' =>
-      ['address' => $email],
-      'first_name' => $firstName,
-      'last_name' => $lastName,
-      'phone_numbers' => [
-        [
-          'phone_number' => $phone,
-          'kind' => 'mobile',
-        ],
+  $constant_contact_data = [
+    'email_address' =>
+    ['address' => $email],
+    'first_name' => $firstName,
+    'last_name' => $lastName,
+    'phone_numbers' => [
+      [
+        'phone_number' => $phone,
+        'kind' => 'mobile',
       ],
-      'street_addresses' => [
-        [
-          'kind' => 'home',
-          'postal_code' => $zipCode,
-        ]
-      ],
-      'custom_fields' => [
-        [
-          'custom_field_id' => '49110fd2-c1df-11ee-a3bc-fa163e5bf31a',
-          'value' => $question1AnswersStr
-        ],
-        [
-          'custom_field_id' => '20f67ddc-c1e1-11ee-a3bc-fa163e5bf31a',
-          'value' => $question2AnswersStr
-        ],
-        [
-          'custom_field_id' => '5bb898c4-c1e1-11ee-8eb0-fa163e6a92d8',
-          'value' => $question3AnswersStr
-        ],
-        [
-          'custom_field_id' => '6bcaa0fe-c1e1-11ee-a765-fa163ef3b06c',
-          'value' => $question4
-        ],
-        [
-          'custom_field_id' => '7b5e8cce-c1e1-11ee-a3bc-fa163e5bf31a',
-          'value' => $question5
-        ],
-        [
-          'custom_field_id' => '881a296e-c1e1-11ee-abe2-fa163eec71c4',
-          'value' => $question6AnswersStr
-        ],
-        [
-          'custom_field_id' => 'da376218-a952-11ee-8b61-fa163e6a92d8',
-          'value' => $termAgreement,
-        ],
-        [
-          'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
-          'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
-        ],
-        [
-          'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
-          'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
-        ],
-        [
-          'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
-          'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
-        ],
-      ],
-      'create_source' => 'Contact',
-      'list_memberships' => [
-        'd3575724-c1d4-11ee-9991-fa163e5bf31a'
+    ],
+    'street_addresses' => [
+      [
+        'kind' => 'home',
+        'postal_code' => $zipCode,
       ]
-    ];
+    ],
+    'custom_fields' => [
+      [
+        'custom_field_id' => '49110fd2-c1df-11ee-a3bc-fa163e5bf31a',
+        'value' => $question1AnswersStr
+      ],
+      [
+        'custom_field_id' => '20f67ddc-c1e1-11ee-a3bc-fa163e5bf31a',
+        'value' => $question2AnswersStr
+      ],
+      [
+        'custom_field_id' => '5bb898c4-c1e1-11ee-8eb0-fa163e6a92d8',
+        'value' => $question3AnswersStr
+      ],
+      [
+        'custom_field_id' => '6bcaa0fe-c1e1-11ee-a765-fa163ef3b06c',
+        'value' => $question4
+      ],
+      [
+        'custom_field_id' => '7b5e8cce-c1e1-11ee-a3bc-fa163e5bf31a',
+        'value' => $question5
+      ],
+      [
+        'custom_field_id' => '881a296e-c1e1-11ee-abe2-fa163eec71c4',
+        'value' => $question6AnswersStr
+      ],
+      [
+        'custom_field_id' => 'da376218-a952-11ee-8b61-fa163e6a92d8',
+        'value' => $termAgreement,
+      ],
+      [
+        'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
+        'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
+      ],
+      [
+        'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
+        'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
+      ],
+      [
+        'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
+        'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
+      ],
+    ],
+    'create_source' => 'Contact',
+    'list_memberships' => [
+      'd3575724-c1d4-11ee-9991-fa163e5bf31a'
+    ]
+  ];
 
   $emailExists = checkEmailExist($email);
 
@@ -514,16 +538,24 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
     ]);
 
     if (is_wp_error($response)) {
-      error_log('Constant Contact API Request Error: ' . $response->get_error_message());
-      wp_send_json_error('Error sending data to Constant Contact.');
+      if (WP_ENV === 'development') {
+        error_log('Constant Contact API Request Error: ' . $response->get_error_message());
+      }
+      // Show a generic message to the user
+      echo "<p>Thank you for your submission! We will be in touch soon.</p>";
     } else {
       $response_code = wp_remote_retrieve_response_code($response);
       if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
-        // wp_send_json_success('Data sent to Constant Contact successfully.');
+        // Successful response, show a success message
+        echo "<p>Thank you for your submission!</p>";
       } else {
-        dump($response_code, $response);
-        error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
-        wp_send_json_error('Unexpected response from Constant Contact.');
+        if (WP_ENV === 'development') {
+          dump($response_code, $response);
+          error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
+          wp_send_json_error('Unexpected response from Constant Contact.');
+        }
+        // Show a generic message to the user
+        echo "<p>Thank you for your submission! We will be in touch soon.</p>";
       }
     }
   }
@@ -557,15 +589,6 @@ function getAccessToken($redirectURI, $clientId, $clientSecret, $code)
   // Make the call
   $result = curl_exec($ch);
   curl_close($ch);
-  
+
   return $result;
-}
-// API Key > Secret Key > Authorization Code - To get Access Token & Refresh Token
-
-https://authz.constantcontact.com/oauth2/default/v1/authorize?client_id=854738ac-84d3-4446-b736-b840e9a951d9&redirect_uri=https://localhost&response_type=code&scope=contact_data%20campaign_data%20offline_access&state=235o250eddsdff
-
-
-function getAuthenticationCode() 
-{
-  return getAccessToken(home_url(), CONSTANT_API_KEY, CONSTANT_CONTACT_SECRET_KEY, get_field('constant_contact_authorization_code', 'option'));
 }
