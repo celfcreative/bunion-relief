@@ -177,7 +177,30 @@ add_action('af/form/submission/key=form_search_location', function ($form, $fiel
     $query = http_build_query($urlQuery);
     $location = home_url('/find-a-doctor/') . '?' . $query;
 
-    header("Location: " . $location);
+    // header("Location: " . $location);
+    // Output JavaScript to open the URL in a new tab and close the current page
+    // echo "<script>
+    //         window.open('{$location}', '_blank');
+    //         window.location.href = '" . home_url() . "';
+    //     </script>";
+    // exit;
+
+    // Output JavaScript to check if opening a new tab is allowed
+    echo "<script>
+        var newTabAllowed = false;
+        var newTab = window.open('', '_blank');
+        if (newTab) {
+            newTabAllowed = true;
+            newTab.close(); // Close the empty tab if it was successfully opened
+        }
+
+        if (newTabAllowed) {
+            window.open('{$location}', '_blank');
+            window.location.href = '" . home_url() . "'; // Redirect the current tab
+        } else {
+            window.location.href = '{$location}'; // Redirect the current tab directly
+        }
+        </script>";
     exit;
 }, 10, 3);
 

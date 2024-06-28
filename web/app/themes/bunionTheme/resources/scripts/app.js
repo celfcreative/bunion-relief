@@ -95,6 +95,20 @@ domReady(async () => {
   const searchBox = document.querySelector('#wpsl-search-input');
   const searchSurgeonBtn = document.getElementById('wpsl-search-btn');
 
+  /**
+   * Format phone number
+   * @param {string} phoneNumber - Phone number in the format +1XXXXXXXXXX
+   * @returns {string} - Formatted phone number in the format (XXX)XXX-XXXX
+   */
+  function formatPhoneNumbers(phoneNumber) {
+    const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+    const match = cleaned.match(/^1?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return `(${match[1]}) ${match[2]}-${match[3]}`;
+    }
+    return phoneNumber;
+  }
+
   // Single Surgeon Auto Populate Name > Form
   if (btnSingle) {
     btnSingle.addEventListener('click', function () {
@@ -138,6 +152,54 @@ domReady(async () => {
     }
   });
 
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   setTimeout(function () {
+  //     const storeListItems = document.querySelectorAll(
+  //       '#wpsl-stores .surgeon-phone',
+  //     );
+  //     storeListItems.forEach(function (storeListItem) {
+  //       const rawPhoneNumber = storeListItem;
+  //       const formattedNumber = formatPhoneNumbers(rawPhoneNumber);
+  //       rawPhoneNumber.innerHTML = formattedNumber;
+  //     });
+  //   }, 5000);
+  // });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    /**
+     * Format phone number
+     * @param {string} phoneNumber - Phone number in the format +1XXXXXXXXXX
+     * @returns {string} - Formatted phone number in the format (XXX)XXX-XXXX
+     */
+    function formatPhoneNumbers(phoneNumber) {
+      const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+      const match = cleaned.match(/^1?(\d{3})(\d{3})(\d{4})$/);
+      if (match) {
+        return `(${match[1]}) ${match[2]}-${match[3]}`;
+      }
+      return phoneNumber;
+    }
+
+    function formatAllPhoneNumbers() {
+      const storeListItems = document.querySelectorAll(
+        '#wpsl-stores .surgeon-phone',
+      );
+      storeListItems.forEach(function (storeListItem) {
+        const formattedNumber = formatPhoneNumbers(storeListItem);
+        storeListItem.innerHTML = formattedNumber;
+      });
+    }
+
+    // Increase the timeout to 10 seconds
+    setTimeout(function () {
+      if (document.querySelectorAll('#wpsl-stores .surgeon-phone').length > 0) {
+        formatAllPhoneNumbers();
+      } else {
+        console.warn('No phone numbers found to format.');
+      }
+    }, 10000);
+  });
+
   /**
   Symptom checker progress bar
   */
@@ -146,7 +208,7 @@ domReady(async () => {
 
     changeIndex[i].innerHTML = qPercent;
 
-    console.log(qPercent);
+    // console.log(qPercent);
   }
 
   /**
@@ -178,19 +240,21 @@ domReady(async () => {
   /**
   extract Distance in URL to Profile
   */
-  const queryDistance = window.location.search;
-  const urlDistanceParam = new URLSearchParams(queryDistance);
-  const distance = urlDistanceParam.get('distance');
-  const distanceIcon = document.querySelector('.locate-icon');
-  const distanceFrom = document.querySelector('.distanceFrom');
+  document.addEventListener('DOMContentLoaded', function () {
+    const queryDistance = window.location.search;
+    const urlDistanceParam = new URLSearchParams(queryDistance);
+    const distance = urlDistanceParam.get('distance');
+    const distanceIcon = document.querySelector('.locate-icon');
+    const distanceFrom = document.querySelector('.distanceFrom');
 
-  if (distanceIcon !== null && distanceFrom !== null) {
-    if (distance) {
-      distanceFrom.textContent = distance;
-    } else {
-      distanceIcon.classList.add('d-none');
+    if (distanceIcon !== null && distanceFrom !== null) {
+      if (distance) {
+        distanceFrom.textContent = distance;
+      } else {
+        distanceIcon.classList.add('d-none');
+      }
     }
-  }
+  });
 
   /**
   Blog Trigger Modal
@@ -212,7 +276,7 @@ domReady(async () => {
       }
       window.addEventListener('scroll', checkScrollPosition);
     }
-    console.log(document.querySelector('.acf-form-submit'));
+    // console.log(document.querySelector('.acf-form-submit'));
   });
 
   /**
@@ -237,6 +301,20 @@ domReady(async () => {
     setTimeout(function () {
       clearInterval(waitForElement);
     }, 5000);
+  });
+
+  // Symptom Quiz Next on Scroll top
+  document.addEventListener('DOMContentLoaded', function () {
+    const quizForm = document.querySelector('#form_symptom_checker');
+    const quizFormBtns = document.querySelectorAll(
+      '#form_symptom_checker .af-next-button',
+    );
+
+    quizFormBtns.forEach((btn) => {
+      btn.addEventListener('click', function() {
+        quizForm.scrollIntoView({behavior: 'smooth'});
+      });
+    });
   });
 });
 

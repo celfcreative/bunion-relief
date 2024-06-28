@@ -1,21 +1,5 @@
 @php
-    function formatPhoneNumber($phoneNumber)
-    {
-        // Remove the leading '+1' country code if present
-        $phoneNumber = preg_replace('/^\+1/', '', $phoneNumber);
-
-        // Ensure the phone number is 10 digits long
-        if (strlen($phoneNumber) === 10) {
-            $areaCode = substr($phoneNumber, 0, 3);
-            $firstPart = substr($phoneNumber, 3, 3);
-            $secondPart = substr($phoneNumber, 6, 4);
-
-            return "($areaCode) $firstPart-$secondPart";
-        }
-
-        // Return the original phone number if it doesn't match the expected format
-        return $phoneNumber;
-    }
+    $formattedPhoneNumber = formatPhoneNumber($surgeonPhone);
 @endphp
 
 <div class="w-100">
@@ -33,9 +17,6 @@
         @endif
         <div class="d-flex flex-column flex-md-row justify-content-between w-100 my-4 gap-3">
             @if ($surgeonPhone)
-                @php
-                    $formattedPhoneNumber = formatPhoneNumber($surgeonPhone);
-                @endphp
                 <a href="tel:{{ $surgeonPhone }}"
                     class="btn btn-primary border-dark-subtle store-single-button shadow surgeon-phone"
                     data-dr-phone='{!! $surgeonName !!}' style="font-size: 14px;">{{ $formattedPhoneNumber }}</a>
