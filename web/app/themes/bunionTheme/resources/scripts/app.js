@@ -247,12 +247,21 @@ domReady(async () => {
     const distanceIcon = document.querySelector('.locate-icon');
     const distanceFrom = document.querySelector('.distanceFrom');
 
+
+    // Compatibility issue with mobile url parameters
+    const screenWidth = window.innerWidth;
+
     if (distanceIcon !== null && distanceFrom !== null) {
       if (distance) {
         distanceFrom.textContent = distance;
       } else {
         distanceIcon.classList.add('d-none');
       }
+
+      // if (screenWidth < 768 && distance) {
+      //   distanceIcon.classList.add('d-none');
+      //   distanceFrom.classList.add('d-none');
+      // }
     }
   });
 
@@ -311,7 +320,7 @@ domReady(async () => {
     );
 
     quizFormBtns.forEach((btn) => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         quizForm.scrollIntoView({behavior: 'smooth'});
       });
     });
