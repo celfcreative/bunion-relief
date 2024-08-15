@@ -307,113 +307,6 @@ add_action('af/form/submission/key=form_get_in_touch', function ($form, $fields,
   }
 }, 10, 3);
 
-/**
- * Resource Download Form -> Constant Contact -> Resource Download contact list
- */
-add_action('af/form/submission/key=form_resource_download', function ($form, $fields, $args) {
-
-  if (isset($_COOKIE['utm_data'])) {
-    $utm_data = $_COOKIE['utm_data'];
-
-    $utm_data_unescaped = stripslashes($utm_data);
-    $decoded_utm = json_decode($utm_data_unescaped);
-
-    update_field('utm_source', $decoded_utm->utm_source);
-    update_field('utm_medium', $decoded_utm->utm_medium);
-    update_field('utm_campaign', $decoded_utm->utm_campaign);
-  }
-
-  // Fetch field data
-  $firstName = af_get_field('first_name');
-  $lastName = af_get_field('last_name');
-  $phone = af_get_field('mobile_number');
-  $email = af_get_field('email');
-  $resourceDownload = af_get_field('resource_name');
-
-  $constant_contact_data = [
-    'email_address' =>
-    ['address' => $email],
-    'first_name' => $firstName,
-    'last_name' => $lastName,
-    'phone_numbers' => [
-      [
-        'phone_number' => $phone,
-        'kind' => 'mobile',
-      ],
-    ],
-    'custom_fields' => [
-      [
-        'custom_field_id' => 'a61e3ca4-a952-11ee-b87d-fa163e28e109',
-        'value' => $resourceDownload,
-      ],
-      [
-        'custom_field_id' => '30d160ec-a953-11ee-b8ff-fa163ef3b06c',
-        'value' => isset($decoded_utm->utm_source) ? $decoded_utm->utm_source : ''
-      ],
-      [
-        'custom_field_id' => '20bf3152-a953-11ee-9955-fa163e0f14ae',
-        'value' => isset($decoded_utm->utm_medium) ? $decoded_utm->utm_medium : ''
-      ],
-      [
-        'custom_field_id' => '0d8837b4-a953-11ee-bf39-fa163e0b03e8',
-        'value' => isset($decoded_utm->utm_campaign) ? $decoded_utm->utm_campaign : ''
-      ],
-    ],
-    'create_source' => 'Contact',
-    'list_memberships' => [
-      '046e02f0-a951-11ee-833d-fa163e6a92d8'
-    ]
-  ];
-
-  $emailExists = checkEmailExist($email);
-
-  if ($emailExists) {
-    //   error_log('Email already exists in Constant Contact for: ' . $email);
-    //   wp_send_json_error('Email already exists in Constant Contact.');
-  } else {
-
-    $api_url = 'https://api.cc.email/v3/contacts';
-    $api_token = (get_field('constant_contact_token', 'option') ? get_field('constant_contact_token', 'option') : CONSTANT_CONTACT_TOKEN);
-
-    $headers = [
-      'Content-Type' => 'application/json',
-      'Authorization' => 'Bearer ' . $api_token,
-    ];
-
-    $body = wp_json_encode($constant_contact_data);
-
-    $response = wp_remote_post($api_url, [
-      'headers' => $headers,
-      'body'    => $body,
-    ]);
-
-    if (is_wp_error($response)) {
-      if (WP_ENV === 'development') {
-        error_log('Constant Contact API Request Error: ' . $response->get_error_message());
-      }
-      // Show a generic message to the user
-      echo "<p>Thank you for your submission! We will be in touch soon.</p>";
-    } else {
-      $response_code = wp_remote_retrieve_response_code($response);
-      if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
-        // Successful response, show a success message
-        echo "<p>Thank you for your submission!</p>";
-      } else {
-        if (WP_ENV === 'development') {
-          dump($response_code, $response);
-          error_log('Constant Contact API Request Error: Unexpected response code ' . $response_code);
-          wp_send_json_error('Unexpected response from Constant Contact.');
-        }
-        // Show a generic message to the user
-        echo "<p>Thank you for your submission! We will be in touch soon.</p>";
-      }
-    }
-  }
-}, 10, 3);
-
-/**
- * Symptom Quiz -> Constant Contact -> Symptom Quiz list
- */
 add_action('af/form/submission/key=form_symptom_checker', function ($form, $fields, $args) {
 
   if (isset($_COOKIE['utm_data'])) {
@@ -426,6 +319,75 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
     update_field('utm_medium', $decoded_utm->utm_medium);
     update_field('utm_campaign', $decoded_utm->utm_campaign);
   }
+
+
+  function getGeneralList($question1Answer)
+  {
+    $listIDs = [
+      'default' => 'faa53ec8-5a80-11ef-a910-fa163ef3b06c',
+      'mild' => '7ed5c594-1f5a-11ef-9872-fa163eec71c4',
+      'moderate' => '835930ce-1f5a-11ef-9530-fa163ef3b06c',
+      'severe' => '8774cd94-1f5a-11ef-b2d9-fa163e28e109',
+    ];
+
+    if (in_array('Mild Bunion', $question1Answer)) {
+      return $listIDs['mild'];
+    } elseif (in_array('Moderate Bunion', $question1Answer)) {
+      return $listIDs['moderate'];
+    } elseif (in_array('Severe Bunion', $question1Answer)) {
+      return $listIDs['severe'];
+    } else {
+      return $listIDs['default'];
+    }
+  }
+
+  function getSpecificList($question2Answer)
+  {
+    $listIDs = [
+      'default' => 'faa53ec8-5a80-11ef-a910-fa163ef3b06c',
+      'hammertoe' => '8e809fe8-5a6d-11ef-b2c6-fa163eec71c4',
+    ];
+
+    if (in_array('Hammertoe(s)', $question2Answer)) {
+      return $listIDs['hammertoe'];
+    }
+
+    return $listIDs['default'];
+  }
+
+  function getDiagnosedList($question4Answer)
+  {
+    $listIDs = [
+      'default' => 'faa53ec8-5a80-11ef-a910-fa163ef3b06c',
+      'diagnosed' => '9101784e-1f5a-11ef-b2d9-fa163e28e109',
+    ];
+
+    if ($question4Answer === 'Yes') {
+      return $listIDs['diagnosed'];
+    }
+
+    return $listIDs['default'];
+  }
+
+  function getNotQualifiedList($question1Answer, $question2Answer, $question3Answer, $question6Answer)
+  {
+    $listIDs = [
+      'default' => 'faa53ec8-5a80-11ef-a910-fa163ef3b06c',
+      'not_qualified' => '04b670f8-5a6d-11ef-bcde-fa163e28e109',
+    ];
+
+    if (
+      in_array('No Bunion', $question1Answer) &&
+      in_array('No Bunion', $question2Answer) &&
+      in_array('None of the above', $question3Answer) &&
+      in_array('Yes', $question6Answer)
+    ) {
+      return $listIDs['not_qualified'];
+    }
+
+    return $listIDs['default'];
+  }
+
 
   // Fetch data from the form fields
   $firstName = af_get_field('first_name');
@@ -446,6 +408,11 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
   $question2AnswersStr = implode(', ', $question2);
   $question3AnswersStr = implode(', ', $question3);
   $question6AnswersStr = implode(', ', $question6);
+
+  $listID = getGeneralList($question1);
+  $listSpecificID = getSpecificList($question2);
+  $listDiagnosedID = getDiagnosedList($question4);
+  $listNotQualifiedID = getNotQualifiedList($question1, $question2, $question3, $question6);
 
   $constant_contact_data = [
     'email_address' =>
@@ -508,15 +475,19 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
     ],
     'create_source' => 'Contact',
     'list_memberships' => [
-      'd3575724-c1d4-11ee-9991-fa163e5bf31a'
+      $listID,
+      $listSpecificID,
+      $listDiagnosedID,
+      $listNotQualifiedID,
+      'faa53ec8-5a80-11ef-a910-fa163ef3b06c',
     ]
   ];
 
   $emailExists = checkEmailExist($email);
 
   if ($emailExists) {
-    // error_log('Email already exists in Constant Contact for: ' . $email);
-    // wp_send_json_error('Email already exists in Constant Contact.');
+    error_log('Email already exists in Constant Contact for: ' . $email);
+    wp_send_json_error('Email already exists in Constant Contact.');
   } else {
 
     $api_url = 'https://api.cc.email/v3/contacts';
@@ -547,7 +518,6 @@ add_action('af/form/submission/key=form_symptom_checker', function ($form, $fiel
       $response_code = wp_remote_retrieve_response_code($response);
       if ($response_code === 200 || $response_code === 201 || $response_code === 202) {
         // Successful response, show a success message
-        echo "<p>Thank you for your submission!</p>";
       } else {
         if (WP_ENV === 'development') {
           dump($response_code, $response);
