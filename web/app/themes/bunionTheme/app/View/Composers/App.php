@@ -24,6 +24,8 @@ class App extends Composer
     {
         return [
             'siteName' => $this->siteName(),
+            'logo' => $this->getSiteLogo(),
+            'footerLogo' => $this->getFooterLogo(),
         ];
     }
 
@@ -35,5 +37,31 @@ class App extends Composer
     public function siteName()
     {
         return get_bloginfo('name', 'display');
+    }
+
+    public function getSiteLogo()
+    {
+        $hasLogo = get_theme_mod('custom_logo');
+
+        if ($hasLogo) {
+            $logo = wp_get_attachment_image_src($hasLogo, 'full');
+
+            if ($logo) {
+                return $logo[0];
+            }
+        }
+
+        return null;
+    }
+
+    public function getFooterLogo()
+    {
+        $hasLogo = get_theme_mod('footer_logo');
+
+        if ($hasLogo) {
+            return $hasLogo;
+        }
+
+        return null;
     }
 }

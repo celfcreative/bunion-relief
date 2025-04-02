@@ -32,7 +32,7 @@
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
-    "caniuse-lite": "^1.0.30001628",
+    "caniuse-lite": "^1.0.30001707",
     "palette-webpack-plugin": "^1.0.5",
     "swiper": "^10.3.1"
   },

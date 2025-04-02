@@ -109,6 +109,11 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#customize-selective-refresh-widgets
      */
     add_theme_support('customize-selective-refresh-widgets');
+
+    /**
+     * Enable main site logo.
+     */
+    add_theme_support('custom-logo');
 }, 20);
 
 /**
@@ -133,4 +138,20 @@ add_action('widgets_init', function () {
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer',
     ] + $config);
+});
+
+// Add footer logo field
+add_action('customize_register', function ($wp_customize) {
+    // Add setting for the footer logo
+    $wp_customize->add_setting('footer_logo', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+
+    // Add control for the second logo (image uploader)
+    $wp_customize->add_control(new \WP_Customize_Image_Control($wp_customize, 'second_logo', [
+        'label'    => __('Footer Logo', 'primadental'),
+        'section'  => 'title_tagline',
+        'settings' => 'footer_logo',
+    ]));
 });
