@@ -58,8 +58,11 @@
     <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="menuOffcanvas">
         <div class="offcanvas-header">
             <a class="brand" href="{{ home_url('/') }}">
-                <img src="{{ bloginfo('url') . '/app/uploads/2023/09/Purple@300x.png' }}" alt="logo1"
-                    class="mobile-offcanvas">
+                @if ($logo)
+                    <img src="{{ $logo }} " alt="bunion relief logo" class="mobile-offcanvas">
+                @else
+                    <img src="@asset('images/br-logo-purple.png')" alt="bunion relief logo" class="mobile-offcanvas">
+                @endif
             </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
