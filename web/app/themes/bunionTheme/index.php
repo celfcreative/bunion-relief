@@ -11,12 +11,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <?php wp_head(); ?>
 
-  <?php the_field('header_tracker', 'option') ?>
+  <?php
+  if (WP_ENV === 'production') {
+    echo the_field('header_tracker', 'option');
+  }
+  ?>
 </head>
 
 <body <?php body_class(); ?>>
-
-  <?php the_field('body_tracker', 'option') ?>
+  <?php
+  if (WP_ENV === 'production') {
+    echo the_field('body_tracker', 'option');
+  }
+  ?>
 
   <?php wp_body_open(); ?>
   <?php do_action('get_header'); ?>

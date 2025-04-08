@@ -7,7 +7,7 @@
                         @if ($logo)
                             <img src="{{ $logo }} " alt="bunion relief logo" class="w-100">
                         @else
-                            <img src="@asset('images/br-logo-purple.png')" alt="bunion relief logo" class="w-100">
+                            <img src="@asset('images/bunion-relief-logo-by-zimmer.png')" alt="bunion relief logo" class="w-100">
                         @endif
                     </a>
                     <div class="col p-0">

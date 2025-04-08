@@ -5,7 +5,7 @@
                 @if ($footerLogo)
                     <img src="{{ $footerLogo }}" alt="bunion relief white logo" class="brand-img w-100 ">
                 @else
-                    <img src="@asset('images/br-logo-white.png')" alt="bunion relief white logo" class="brand-img w-100 ">
+                    <img src="@asset('images/bunion-relief-logo-by-zimmer-white.png')" alt="bunion relief white logo default" class="brand-img w-100 ">
                 @endif
                 <img src="@asset('images/br-phantom-logo-white.png')" alt="bunion relief mis logo" class="brand-img w-100">
             </div>
